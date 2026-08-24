@@ -1,0 +1,7 @@
+/* V11 hotfix: tela cheia limpa e sem barra de áudio */
+#streamOverlayVolumeBar { display: none !important; }
+#streamOverlay.hidden {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
