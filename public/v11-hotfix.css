@@ -1,7 +1,100 @@
-/* V11 hotfix: tela cheia limpa e sem barra de áudio */
+/* V12: transmissão realmente em tela cheia */
+
+/* A barra de áudio continua fora da tela cheia. */
 #streamOverlayVolumeBar { display: none !important; }
+
+/* Quando o overlay fecha, ele não pode ficar bloqueando cliques no site. */
 #streamOverlay.hidden {
   display: none !important;
   pointer-events: none !important;
   visibility: hidden !important;
+}
+
+/* No fullscreen real, some toda a interface e fica somente o compartilhamento. */
+#streamOverlay:fullscreen,
+#streamOverlay:-webkit-full-screen {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: #000 !important;
+  overflow: hidden !important;
+}
+
+#streamOverlay:fullscreen .stream-overlay-head,
+#streamOverlay:fullscreen .stream-participants-wrap,
+#streamOverlay:fullscreen #streamOverlayVolumeBar,
+#streamOverlay:-webkit-full-screen .stream-overlay-head,
+#streamOverlay:-webkit-full-screen .stream-participants-wrap,
+#streamOverlay:-webkit-full-screen #streamOverlayVolumeBar {
+  display: none !important;
+}
+
+#streamOverlay:fullscreen .stream-overlay-body,
+#streamOverlay:-webkit-full-screen .stream-overlay-body {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #000 !important;
+  overflow: hidden !important;
+}
+
+#streamOverlay:fullscreen .stream-player-shell,
+#streamOverlay:-webkit-full-screen .stream-player-shell {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #000 !important;
+  overflow: hidden !important;
+}
+
+#streamOverlay:fullscreen #streamOverlayVideo,
+#streamOverlay:-webkit-full-screen #streamOverlayVideo {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #000 !important;
+}
+
+#streamOverlay:fullscreen .stream-overlay-empty,
+#streamOverlay:-webkit-full-screen .stream-overlay-empty {
+  position: absolute !important;
+  inset: 0 !important;
+  display: grid;
+  place-items: center;
+  background: #000;
 }
