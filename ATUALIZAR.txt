@@ -1,0 +1,17 @@
+ESSÊNCIA CHAT V2 - COMO ATUALIZAR
+
+1) Pare o servidor atual (Ctrl+C).
+2) Faça backup da pasta data/ do seu projeto atual, principalmente data/db.json.
+3) Extraia esta versão em outra pasta.
+4) Se quiser manter contas, amigos e servidores, copie o seu data/db.json antigo para a nova pasta data/db.json.
+   Se a pasta data/ não existir ainda, crie-a.
+5) No terminal, dentro da nova pasta:
+   npm install
+   npm start
+6) Abra http://localhost:3000
+
+IMPORTANTE:
+- O banco antigo é compatível.
+- Não copie a pasta node_modules antiga; rode npm install.
+- Para voz/tela entre computadores pela internet, HTTPS + TURN é recomendado.
+- Para áudio da tela, marque "Compartilhar áudio" no seletor do navegador quando essa opção aparecer.

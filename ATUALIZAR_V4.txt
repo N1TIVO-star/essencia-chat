@@ -1,0 +1,15 @@
+ESSÊNCIA CHAT V4 — ATUALIZAÇÃO
+
+1. PARE o servidor antigo.
+2. Faça backup da pasta data/ do projeto atual.
+3. Extraia a V4.
+4. Copie sua pasta data/ antiga para dentro da V4.
+5. NÃO substitua seu data/db.json por um arquivo vazio.
+6. Rode:
+   npm install
+   npm start
+7. Abra o site e pressione Ctrl+F5.
+
+Se estiver usando ngrok, mantenha o processo Node rodando e aponte o túnel para a porta 3000.
+
+A V4 preserva contas, perfis, amigos, servidores e mensagens no data/db.json.

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0d14" />
+  <title>Essência</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <section id="authScreen" class="auth-screen">
+    <div class="auth-glow g1"></div><div class="auth-glow g2"></div>
+    <div class="brand-card">
+      <div class="brand-mark">E</div>
+      <div><h1>Essência</h1><p>Converse, crie comunidades e compartilhe momentos.</p></div>
+    </div>
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button id="loginTab" class="active">Entrar</button>
+        <button id="registerTab">Criar conta</button>
+      </div>
+      <form id="authForm">
+        <label>Nome de usuário</label>
+        <input id="authUsername" autocomplete="username" placeholder="seu_nome" required />
+        <label>Senha</label>
+        <div class="password-wrap">
+          <input id="authPassword" type="password" autocomplete="current-password" placeholder="••••••••" required />
+          <button type="button" id="togglePasswordBtn" class="password-eye" aria-label="Mostrar senha" title="Mostrar senha">👁</button>
+        </div>
+        <button class="primary wide" id="authSubmit">Entrar</button>
+        <p id="authError" class="form-error"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="app" class="app hidden">
+    <aside class="server-rail">
+      <button class="rail-logo active" id="homeRailBtn" data-view="home" title="Início / Mensagens">E</button>
+      <div class="rail-line"></div>
+      <div id="serverIcons"></div>
+      <button class="rail-add" id="newServerBtn">+</button>
+    </aside>
+
+    <aside class="sidebar">
+      <header class="sidebar-head">
+        <strong id="sidebarTitle">Amigos</strong>
+        <div class="sidebar-head-actions">
+          <button id="inviteMemberBtn" class="head-action hidden" title="Adicionar pessoa ao servidor">👤+</button>
+          <button id="mobileDrawerCloseBtn" class="mobile-drawer-close" title="Fechar menu" aria-label="Fechar menu">×</button>
+        </div>
+      </header>
+
+      <div id="homeSidebar">
+        <button class="nav-item active" data-home="friends">👥 <span>Amigos</span></button>
+        <button class="nav-item" data-home="requests">✉️ <span>Solicitações</span><b id="requestBadge"></b></button>
+        <button class="nav-item" id="profileBtn">⚙️ <span>Meu perfil</span></button>
+        <div class="sidebar-section">
+          <div class="section-title">MENSAGENS DIRETAS</div>
+          <div id="dmFriends"></div>
+        </div>
+      </div>
+
+      <div id="serverSidebar" class="hidden">
+        <div class="sidebar-section channels-block">
+          <div class="section-title"><span>CANAIS DE TEXTO</span><button data-new-channel="text">+</button></div>
+          <div id="textChannels"></div>
+        </div>
+        <div class="sidebar-section channels-block">
+          <div class="section-title"><span>CANAIS DE VOZ</span><button data-new-channel="voice">+</button></div>
+          <div id="voiceChannels"></div>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div id="activeCallBar" class="active-call-bar hidden">
+          <div class="active-call-top">
+            <div class="active-call-info">
+              <span class="call-dot"></span>
+              <div><strong id="activeCallTitle">Conectado</strong><small id="activeCallSubtitle">Canal de voz</small></div>
+            </div>
+            <div class="active-call-actions">
+              <button id="showActiveCallBtn" title="Ver chamada">👁</button>
+              <button id="disconnectCallBtn" class="hangup" title="Desconectar">☎</button>
+            </div>
+          </div>
+          <div id="activeCallParticipants" class="active-call-participants"></div>
+        </div>
+
+        <footer class="me-bar">
+          <img id="meAvatar" class="avatar" alt="" />
+          <div class="me-meta"><strong id="meNick"></strong><small id="meUsername"></small></div>
+          <button id="globalMuteBtn" title="Silenciar">🎙️</button>
+          <button id="openProfileBtn" title="Perfil">⚙️</button>
+        </footer>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <button id="mobileMenuBtn" class="mobile-only">☰</button>
+        <div class="top-title"><span id="topIcon">👥</span><strong id="topTitle">Amigos</strong></div>
+        <div class="top-actions">
+          <button id="dmCallBtn" class="pill hidden">📞 Chamar</button>
+          <button id="addFriendTopBtn" class="pill">Adicionar amigo</button>
+          <button id="membersToggle" class="icon-action hidden">👥</button>
+        </div>
+      </header>
+
+      <section id="homeView" class="view">
+        <div class="home-hero">
+          <div>
+            <span class="eyebrow">SUA REDE</span>
+            <h2>Conecte-se com seus amigos.</h2>
+            <p>Adicione pessoas pelo nome de usuário e crie comunidades privadas.</p>
+          </div>
+          <button id="addFriendHero" class="primary">+ Adicionar amigo</button>
+        </div>
+        <div id="homeContent" class="list-card"></div>
+      </section>
+
+      <section id="chatView" class="view hidden">
+        <div id="messages" class="messages"></div>
+
+        <div id="emojiPopover" class="emoji-popover hidden">
+          <button>😀</button><button>😂</button><button>😍</button><button>🥰</button>
+          <button>😎</button><button>🤔</button><button>😭</button><button>😡</button>
+          <button>👍</button><button>👏</button><button>🙏</button><button>🔥</button>
+          <button>❤️</button><button>💜</button><button>✨</button><button>🎉</button>
+          <button>👀</button><button>💀</button><button>✅</button><button>🚀</button>
+        </div>
+
+        <div class="composer">
+          <button id="attachBtn" class="composer-tool left-tool" title="Enviar arquivo">+</button>
+          <input id="fileInput" type="file" hidden />
+          <input id="gifInput" type="file" accept="image/gif" hidden />
+          <textarea id="messageInput" rows="1" placeholder="Mensagem"></textarea>
+          <div class="composer-right">
+            <button id="gifBtn" class="composer-tool" title="Enviar GIF">GIF</button>
+            <button id="emojiBtn" class="composer-tool" title="Emoji">☺</button>
+            <button id="sendBtn" class="primary">Enviar</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="voiceView" class="view hidden">
+        <div class="voice-stage">
+          <div class="voice-top">
+            <div><span class="eyebrow" id="voiceKindLabel">CANAL DE VOZ</span><h2 id="voiceRoomName">Bate-papo</h2></div>
+            <div class="quality-badge" id="qualityBadge">Voz</div>
+          </div>
+          <div id="videoGrid" class="video-grid"></div>
+          <div class="voice-controls">
+            <button id="micBtn" class="round-control">🎙️<span>Microfone</span></button>
+            <button id="screenBtn" class="round-control accent">🖥️<span>Transmitir</span></button>
+            <button id="qualityBtn" class="round-control">HD<span>Qualidade</span></button>
+            <button id="leaveVoiceBtn" class="round-control danger">☎️<span>Sair</span></button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside id="membersPanel" class="members-panel hidden">
+      <div class="members-panel-head">
+        <div>
+          <span class="eyebrow">SERVIDOR</span>
+          <strong>Membros</strong>
+        </div>
+        <div class="members-panel-actions">
+          <span id="membersCount" class="members-count">0</span>
+          <button id="mobileMembersCloseBtn" class="mobile-members-close" title="Fechar membros" aria-label="Fechar membros">×</button>
+        </div>
+      </div>
+      <div class="members-filter-wrap">
+        <input id="membersFilter" type="search" placeholder="Buscar membro">
+      </div>
+      <div id="membersList"></div>
+    </aside>
+
+    <button id="mobileScrim" class="mobile-scrim hidden" aria-label="Fechar painel"></button>
+  </section>
+
+  <div id="streamOverlay" class="stream-overlay hidden">
+    <div class="stream-overlay-head">
+      <div>
+        <span class="eyebrow">TRANSMISSÃO</span>
+        <strong id="streamOverlayTitle">Tela compartilhada</strong>
+      </div>
+      <div class="stream-overlay-actions">
+        <button id="browserFullscreenBtn" title="Tela cheia do navegador">⛶ Tela cheia</button>
+        <button id="closeStreamOverlayBtn" title="Fechar">×</button>
+      </div>
+    </div>
+    <div class="stream-overlay-body">
+      <div class="stream-player-shell">
+        <video id="streamOverlayVideo" autoplay muted playsinline></video>
+        <div id="streamOverlayEmpty" class="stream-overlay-empty hidden">A transmissão terminou.</div>
+        <div id="streamOverlayVolumeBar" class="stream-overlay-volume hidden">
+          <div class="overlay-volume-title"><span>🖥️</span><div><b>Áudio da transmissão</b><small>0% silencia • até 200% amplifica</small></div></div>
+          <button id="streamOverlayMuteBtn" class="overlay-volume-icon" title="Silenciar transmissão">🔊</button>
+          <input id="streamOverlayVolumeSlider" type="range" min="0" max="200" step="1" value="100" aria-label="Volume da transmissão">
+          <span id="streamOverlayVolumeValue">100%</span>
+        </div>
+      </div>
+      <div class="stream-participants-wrap">
+        <div class="stream-participants-title">
+          <span>NA CHAMADA</span>
+          <span id="streamParticipantsCount">0 participantes</span>
+        </div>
+        <div id="streamParticipants" class="stream-participants"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="streamVolumeContext" class="stream-volume-context hidden" role="menu">
+    <div class="stream-context-head">
+      <div>
+        <span class="audio-mixer-kicker">MIXER DE ÁUDIO</span>
+        <strong id="streamContextUser">Transmissão</strong>
+        <small>O ajuste é aplicado no áudio recebido em tempo real.</small>
+      </div>
+      <span class="audio-mixer-icon">🎚️</span>
+    </div>
+    <section class="stream-context-row">
+      <div><b>🖥️ Transmissão</b><span id="streamContextVolumeValue">100%</span></div>
+      <div class="stream-context-slider-line">
+        <button id="streamContextMuteBtn" type="button" title="Silenciar transmissão">🔊</button>
+        <input id="streamContextVolumeSlider" type="range" min="0" max="200" step="1" value="100">
+      </div>
+      <div class="audio-presets" data-kind="stream">
+        <button type="button" data-level="0">0</button><button type="button" data-level="25">25</button><button type="button" data-level="50">50</button><button type="button" data-level="100">100</button><button type="button" data-level="150">150</button><button type="button" data-level="200">200</button>
+      </div>
+    </section>
+    <section class="stream-context-row">
+      <div><b>🎙️ Voz</b><span id="voiceContextVolumeValue">100%</span></div>
+      <div class="stream-context-slider-line no-button">
+        <span class="audio-mini-icon">🎙️</span>
+        <input id="voiceContextVolumeSlider" type="range" min="0" max="200" step="1" value="100">
+      </div>
+      <div class="audio-presets" data-kind="voice">
+        <button type="button" data-level="0">0</button><button type="button" data-level="25">25</button><button type="button" data-level="50">50</button><button type="button" data-level="100">100</button><button type="button" data-level="150">150</button><button type="button" data-level="200">200</button>
+      </div>
+    </section>
+    <div class="audio-mixer-note"><span>✓</span><small>50% fica perceptivelmente mais baixo. 0% corta o áudio completamente.</small></div>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <div class="modal">
+      <button id="modalClose" class="modal-x">×</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+      <div id="modalBody"></div>
+      <p id="modalError" class="form-error"></p>
+      <div class="modal-actions">
+        <button id="modalCancel" class="secondary">Cancelar</button>
+        <button id="modalConfirm" class="primary">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

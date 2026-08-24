@@ -1,0 +1,12 @@
+ESSÊNCIA CHAT V5 — ATUALIZAÇÃO
+
+1. Faça backup da pasta data/ da sua versão atual.
+2. Extraia a V5.
+3. Copie sua pasta data/ antiga para a V5 para manter contas, servidores, amigos e mensagens.
+4. Execute npm install e npm start.
+5. No navegador, use Ctrl+F5.
+
+NOVIDADE V5
+- Botão 🔊 em cada participante remoto.
+- Volume da voz e volume do áudio da transmissão separados.
+- Ajustes ficam salvos no navegador para cada usuário.
