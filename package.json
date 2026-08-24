@@ -1,12 +1,12 @@
 {
   "name": "essencia-chat",
-  "version": "1.5.1",
+  "version": "1.5.0",
   "private": true,
-  "description": "Essência Chat V11 - correção da transmissão em tela cheia.",
-  "main": "hotfix-server.js",
+  "description": "Essência Chat V10 - interface mobile refeita e responsiva.",
+  "main": "server.js",
   "scripts": {
-    "start": "node hotfix-server.js",
-    "dev": "node hotfix-server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "engines": {
     "node": ">=18"
