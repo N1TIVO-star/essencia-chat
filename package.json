@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "1.9.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Essência Chat V19 - cargos, permissões, atribuição de cargos e administração do servidor.",
+  "description": "Essência Chat V20 - pesquisa de mensagens, imagens e arquivos nos servidores.",
   "main": "presence-lite-server.js",
   "scripts": {
     "start": "node presence-lite-server.js",
