@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(UPLOAD_DIR));`,
 `app.use(express.json({ limit: "3mb" }));
 
-// Presence Lite: injeta somente os arquivos de presença, sem loops pesados.
+// Presence Lite + Message Notify Lite: injeta somente recursos leves e orientados a eventos.
 app.use((req, res, next) => {
   if (req.method !== "GET" || !["/", "/index.html"].includes(req.path)) return next();
   try {
@@ -27,6 +27,9 @@ app.use((req, res, next) => {
     if (!html.includes("/presence-lite.js")) {
       html = html.replace("</body>", '  <script src="/presence-lite.js"></script>\\n</body>');
     }
+    if (!html.includes("/message-notify-lite.js")) {
+      html = html.replace("</body>", '  <script src="/message-notify-lite.js"></script>\\n</body>');
+    }
     res.type("html").send(html);
   } catch (err) {
     next(err);
@@ -35,7 +38,7 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(UPLOAD_DIR));`,
-'injeção dos arquivos de presença'
+'injeção dos arquivos leves'
 );
 
 patchOnce(
@@ -58,6 +61,33 @@ function emitPresence() {
   io.emit("presence:update", { onlineUserIds: [...onlineSockets.keys()] });
 }`,
 'endpoint e emissor de presença'
+);
+
+patchOnce(
+`    io.to(textRoom(serverId, channelId)).emit("message:new", {
+      ...msg,
+      user: publicUser(user)
+    });`,
+`    const deliveredMessage = {
+      ...msg,
+      user: publicUser(user)
+    };
+
+    io.to(textRoom(serverId, channelId)).emit("message:new", deliveredMessage);
+
+    // Notificação leve para membros que estejam em qualquer outra tela do site.
+    for (const memberId of srv.members || []) {
+      if (memberId === uid) continue;
+      io.to(\`user:\${memberId}\`).emit("message:notify", {
+        from: publicUser(user),
+        serverId,
+        serverName: srv.name,
+        channelId,
+        channelName: ch.name,
+        message: deliveredMessage
+      });
+    }`,
+'notificação de mensagens do servidor'
 );
 
 source = source.replaceAll('io.emit("presence:update");', 'emitPresence();');
