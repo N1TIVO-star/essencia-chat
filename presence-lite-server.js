@@ -42,13 +42,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(UPLOAD_DIR));`,
 `app.use(express.json({ limit: "3mb" }));
 
-// Presence Lite + Message Notify Lite + Call Ring Lite + Speaking Lite + V17 UI.
+// Presence Lite + notificações + chamadas + fala + V17 UI + V18 ações de mensagem.
 app.use((req, res, next) => {
   if (req.method !== "GET" || !["/", "/index.html"].includes(req.path)) return next();
   try {
     let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");
-    const styles = ["/presence-lite.css", "/v17-ui.css"];
-    const scripts = ["/presence-lite.js", "/message-notify-lite.js", "/call-ring-lite.js", "/speaking-lite.js", "/v17-ui.js"];
+    const styles = ["/presence-lite.css", "/v17-ui.css", "/v18-message-actions.css"];
+    const scripts = ["/presence-lite.js", "/message-notify-lite.js", "/call-ring-lite.js", "/speaking-lite.js", "/v17-ui.js", "/v18-message-actions.js"];
     for (const href of styles) {
       if (!html.includes(href)) html = html.replace("</head>", \`  <link rel="stylesheet" href="\${href}" />\\n</head>\`);
     }
@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(UPLOAD_DIR));`,
-'injeção dos arquivos leves + V17'
+'injeção dos arquivos leves + V17/V18'
 );
 
 patchOnce(
@@ -113,8 +113,77 @@ const onlineSockets = new Map();
 
 function emitPresence() {
   io.emit("presence:update", { onlineUserIds: [...onlineSockets.keys()] });
+}
+
+function safeReplyTo(reply) {
+  if (!reply || typeof reply !== "object") return null;
+  const idValue = String(reply.id || "").slice(0, 80);
+  if (!idValue) return null;
+  return {
+    id: idValue,
+    userId: String(reply.userId || "").slice(0, 80),
+    userNick: String(reply.userNick || "Usuário").slice(0, 80),
+    text: String(reply.text || "Mensagem").slice(0, 160)
+  };
 }`,
-'endpoint e emissor de presença'
+'endpoint, presença e reply seguro'
+);
+
+patchOnce(
+`    const msg = {
+      id: id("msg"),
+      userId: uid,
+      text: clean,
+      attachment: file,
+      createdAt: Date.now()
+    };`,
+`    const msg = {
+      id: id("msg"),
+      userId: uid,
+      text: clean,
+      attachment: file,
+      replyTo: safeReplyTo(arguments[0]?.replyTo),
+      createdAt: Date.now()
+    };`,
+'replyTo em mensagem de servidor'
+);
+
+patchOnce(
+`  socket.on("message:send", ({ serverId, channelId, text, attachment }) => {`,
+`  socket.on("message:send", ({ serverId, channelId, text, attachment, replyTo }) => {`,
+'assinatura message:send V18'
+);
+
+source = source.replace(
+`      replyTo: safeReplyTo(arguments[0]?.replyTo),`,
+`      replyTo: safeReplyTo(replyTo),`
+);
+
+patchOnce(
+`    const msg = {
+      id: id("dm"),
+      userId: uid,
+      friendId,
+      text: clean,
+      attachment: file,
+      createdAt: Date.now()
+    };`,
+`    const msg = {
+      id: id("dm"),
+      userId: uid,
+      friendId,
+      text: clean,
+      attachment: file,
+      replyTo: safeReplyTo(replyTo),
+      createdAt: Date.now()
+    };`,
+'replyTo em DM'
+);
+
+patchOnce(
+`  socket.on("dm:send", ({ friendId, text, attachment }) => {`,
+`  socket.on("dm:send", ({ friendId, text, attachment, replyTo }) => {`,
+'assinatura dm:send V18'
 );
 
 patchOnce(
@@ -141,6 +210,73 @@ patchOnce(
       });
     }`,
 'notificação de mensagens do servidor'
+);
+
+patchOnce(
+`  socket.on("dm:join", ({ friendId }) => {`,
+`  socket.on("message:delete", ({ serverId, channelId, messageId }, ack) => {
+    const srv = db.servers[serverId];
+    if (!userCanAccessServer(user, srv)) {
+      if (typeof ack === "function") ack({ ok: false, error: "Sem acesso." });
+      return;
+    }
+    const ch = srv.channels.find(c => c.id === channelId && c.type === "text");
+    if (!ch) {
+      if (typeof ack === "function") ack({ ok: false, error: "Canal não encontrado." });
+      return;
+    }
+    const key = channelKey(serverId, channelId);
+    const list = db.messages[key] || [];
+    const index = list.findIndex(m => m.id === messageId);
+    if (index < 0) {
+      if (typeof ack === "function") ack({ ok: false, error: "Mensagem não encontrada." });
+      return;
+    }
+    const target = list[index];
+    const allowed = target.userId === uid || srv.ownerId === uid;
+    if (!allowed) {
+      if (typeof ack === "function") ack({ ok: false, error: "Você não tem permissão para excluir esta mensagem." });
+      return;
+    }
+    list.splice(index, 1);
+    saveDb();
+    io.to(\`server:\${serverId}\`).emit("message:deleted", { serverId, channelId, messageId });
+    if (typeof ack === "function") ack({ ok: true });
+  });
+
+  socket.on("dm:join", ({ friendId }) => {`,
+'exclusão de mensagem do servidor'
+);
+
+patchOnce(
+`  socket.on("voice:join", ({ serverId, channelId }, ack) => {`,
+`  socket.on("dm:delete", ({ friendId, messageId }, ack) => {
+    const friend = db.users[friendId];
+    if (!friend || !areFriends(user, friend)) {
+      if (typeof ack === "function") ack({ ok: false, error: "Conversa não disponível." });
+      return;
+    }
+    const key = dmKey(uid, friendId);
+    const list = db.dmMessages[key] || [];
+    const index = list.findIndex(m => m.id === messageId);
+    if (index < 0) {
+      if (typeof ack === "function") ack({ ok: false, error: "Mensagem não encontrada." });
+      return;
+    }
+    if (list[index].userId !== uid) {
+      if (typeof ack === "function") ack({ ok: false, error: "Você só pode excluir suas próprias mensagens privadas." });
+      return;
+    }
+    list.splice(index, 1);
+    saveDb();
+    io.to(dmRoom(uid, friendId)).emit("dm:deleted", { friendId: uid, messageId });
+    io.to(\`user:\${uid}\`).emit("dm:deleted", { friendId, messageId });
+    io.to(\`user:\${friendId}\`).emit("dm:deleted", { friendId: uid, messageId });
+    if (typeof ack === "function") ack({ ok: true });
+  });
+
+  socket.on("voice:join", ({ serverId, channelId }, ack) => {`,
+'exclusão de DM'
 );
 
 source = source.replaceAll('io.emit("presence:update");', 'emitPresence();');
