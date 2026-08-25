@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(UPLOAD_DIR));`,
 `app.use(express.json({ limit: "3mb" }));
 
-// Presence Lite + Message Notify Lite + Call Ring Lite: recursos leves e orientados a eventos.
+// Presence Lite + Message Notify Lite + Call Ring Lite + Speaking Lite.
 app.use((req, res, next) => {
   if (req.method !== "GET" || !["/", "/index.html"].includes(req.path)) return next();
   try {
@@ -32,6 +32,9 @@ app.use((req, res, next) => {
     }
     if (!html.includes("/call-ring-lite.js")) {
       html = html.replace("</body>", '  <script src="/call-ring-lite.js"></script>\\n</body>');
+    }
+    if (!html.includes("/speaking-lite.js")) {
+      html = html.replace("</body>", '  <script src="/speaking-lite.js"></script>\\n</body>');
     }
     res.type("html").send(html);
   } catch (err) {
@@ -78,7 +81,6 @@ patchOnce(
 
     io.to(textRoom(serverId, channelId)).emit("message:new", deliveredMessage);
 
-    // Notificação leve para membros que estejam em qualquer outra tela do site.
     for (const memberId of srv.members || []) {
       if (memberId === uid) continue;
       io.to(\`user:\${memberId}\`).emit("message:notify", {
