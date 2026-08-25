@@ -1,12 +1,12 @@
 {
   "name": "essencia-chat",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "private": true,
-  "description": "Essência Chat - versão estável restaurada após rollback da V13.",
-  "main": "server.js",
+  "description": "Essência Chat - Presence Lite com online/offline leve.",
+  "main": "presence-lite-server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node presence-lite-server.js",
+    "dev": "node presence-lite-server.js"
   },
   "engines": {
     "node": ">=18"
