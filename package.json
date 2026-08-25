@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
-  "description": "Essência Chat V17 - nova UI, temas, perfil com banner/GIF, emojis maiores, GIF picker e lightbox de imagens.",
+  "description": "Essência Chat V18 - ações de mensagem, responder, encaminhar, copiar texto e excluir mensagens.",
   "main": "presence-lite-server.js",
   "scripts": {
     "start": "node presence-lite-server.js",
