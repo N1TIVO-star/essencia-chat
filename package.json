@@ -1,12 +1,12 @@
 {
   "name": "essencia-chat",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
-  "description": "Essência Chat V10 - interface mobile refeita e responsiva.",
-  "main": "server.js",
+  "description": "Essência Chat V13 - presença online/offline, notificações, toque de chamada e indicador de fala.",
+  "main": "v13-server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node v13-server.js",
+    "dev": "node v13-server.js"
   },
   "engines": {
     "node": ">=18"
