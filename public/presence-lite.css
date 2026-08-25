@@ -25,3 +25,20 @@
   border:2px solid #11151f;
 }
 .dm-presence-lite.offline { background:#596273; }
+
+/* V16 — indicador de fala leve */
+.video-tile.speaking-lite {
+  border-color:#2fd18b !important;
+  box-shadow:0 0 0 2px rgba(47,209,139,.95) !important;
+}
+.voice-participant.speaking-lite,
+.active-call-person.speaking-lite,
+.stream-participant.speaking-lite {
+  box-shadow:inset 0 0 0 1px rgba(47,209,139,.9) !important;
+  background:rgba(47,209,139,.10) !important;
+}
+.voice-participant.speaking-lite .avatar,
+.active-call-person.speaking-lite .avatar,
+.stream-participant.speaking-lite .avatar {
+  box-shadow:0 0 0 2px #2fd18b !important;
+}
