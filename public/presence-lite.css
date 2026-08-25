@@ -1,0 +1,27 @@
+/* Presence Lite — somente online/offline, sem animações ou monitoramento pesado */
+.presence-label { margin-left:4px; font-weight:700; }
+.presence-label.online { color:#2fd18b; }
+.presence-label.offline { color:#727c8d; }
+
+.presence-offline-row { opacity:.56; }
+.member-presence-offline { opacity:.46; filter:saturate(.55); }
+.member-presence-online,
+.presence-online-row { opacity:1; }
+
+.presence-offline-dot {
+  background:#596273 !important;
+  box-shadow:none !important;
+}
+
+.dm-item { position:relative; }
+.dm-presence-lite {
+  position:absolute;
+  left:39px;
+  bottom:8px;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#2fd18b;
+  border:2px solid #11151f;
+}
+.dm-presence-lite.offline { background:#596273; }
