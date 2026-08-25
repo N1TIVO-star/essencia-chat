@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "private": true,
-  "description": "Essência Chat V15 - Presence Lite + notificações leves + toque de chamada.",
+  "description": "Essência Chat V16 - Presence Lite + notificações + toque de chamada + indicador leve de fala.",
   "main": "presence-lite-server.js",
   "scripts": {
     "start": "node presence-lite-server.js",
