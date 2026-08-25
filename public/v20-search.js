@@ -10,6 +10,7 @@
   let currentOnly = false;
   let debounce = null;
   let lastQuery = '';
+  let searchGeneration = 0;
 
   function esc(value) {
     const d = document.createElement('div');
@@ -18,7 +19,14 @@
   }
 
   function buildUI() {
-    if (document.querySelector('#v20SearchBox')) return;
+    if (document.querySelector('#v20SearchBox')) {
+      box = document.querySelector('#v20SearchBox');
+      panel = document.querySelector('#v20SearchPanel');
+      input = document.querySelector('#v20SearchInput');
+      panelInput = document.querySelector('#v20SearchPanelInput');
+      resultsBox = document.querySelector('#v20SearchResults');
+      return;
+    }
 
     const actions = document.querySelector('.top-actions');
     if (!actions) return;
@@ -71,6 +79,7 @@
       panelInput.value = '';
       updateClear();
       lastQuery = '';
+      searchGeneration++;
       renderIdle();
       input.focus();
     };
@@ -142,20 +151,54 @@
     label.textContent = currentOnly && state.currentChannel?.type === 'text' ? `#${state.currentChannel.name}` : (state.currentServer?.name || '');
   }
 
+  function messageMatches(message, q) {
+    const user = message.user || {};
+    const attachment = message.attachment || {};
+    const haystack = [message.text, user.nick, user.username, attachment.name].filter(Boolean).join(' ').toLowerCase();
+    return haystack.includes(q.toLowerCase());
+  }
+
+  function typeMatches(message) {
+    const type = String(message.attachment?.type || '');
+    if (currentType === 'messages') return !!String(message.text || '').trim();
+    if (currentType === 'images') return type.startsWith('image/');
+    if (currentType === 'files') return !!message.attachment && !type.startsWith('image/');
+    return true;
+  }
+
   async function runSearch() {
     if (!state.currentServer || !resultsBox) return;
     const q = lastQuery.trim();
     if (!q) { renderIdle(); return; }
 
+    const generation = ++searchGeneration;
+    const server = state.currentServer;
     resultsBox.innerHTML = '<div class="v20-search-loading">Pesquisando…</div>';
     document.querySelector('#v20SearchCount').textContent = 'Pesquisando';
 
     try {
-      const params = new URLSearchParams({ q, type: currentType });
-      if (currentOnly && state.currentChannel?.type === 'text') params.set('channelId', state.currentChannel.id);
-      const data = await API(`/api/servers/${state.currentServer.id}/search?${params.toString()}`);
-      renderResults(data.results || [], data.total || 0);
+      let channels = (server.channels || []).filter(channel => channel.type === 'text');
+      if (currentOnly && state.currentChannel?.type === 'text') channels = channels.filter(channel => channel.id === state.currentChannel.id);
+
+      const batches = await Promise.all(channels.map(async channel => {
+        try {
+          const data = await API(`/api/servers/${server.id}/channels/${channel.id}/messages`);
+          return (data.messages || []).map(message => ({ ...message, channelId:channel.id, channelName:channel.name }));
+        } catch {
+          return [];
+        }
+      }));
+
+      if (generation !== searchGeneration || state.currentServer?.id !== server.id) return;
+
+      const results = batches.flat()
+        .filter(message => messageMatches(message, q) && typeMatches(message))
+        .sort((a,b) => Number(b.createdAt || 0) - Number(a.createdAt || 0))
+        .slice(0,100);
+
+      renderResults(results, results.length);
     } catch (err) {
+      if (generation !== searchGeneration) return;
       resultsBox.innerHTML = `<div class="v20-search-error">${esc(err.message || 'Não foi possível pesquisar.')}</div>`;
       document.querySelector('#v20SearchCount').textContent = 'Erro na pesquisa';
     }
@@ -202,7 +245,7 @@
         row.classList.remove('v20-search-hit');
         requestAnimationFrame(() => row.classList.add('v20-search-hit'));
       } else {
-        toast('Mensagem encontrada, mas não está entre as últimas mensagens carregadas deste canal.');
+        toast('Resultado encontrado, mas a mensagem não está mais disponível.');
       }
     } catch (err) {
       toast(err.message || 'Não foi possível abrir o resultado.');
@@ -261,11 +304,7 @@
     };
   } catch {}
 
-  const timer = setInterval(() => {
-    updateVisibility();
-    if (box && state.currentServer && !box.classList.contains('hidden')) clearInterval(timer);
-  },500);
-
+  const timer = setInterval(() => updateVisibility(),900);
   window.addEventListener('beforeunload',() => { clearInterval(timer); clearTimeout(debounce); },{once:true});
   buildUI();
   updateVisibility();
