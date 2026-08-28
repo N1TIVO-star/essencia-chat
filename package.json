@@ -1,12 +1,12 @@
 {
   "name": "essencia-chat",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "private": true,
-  "description": "Essência Chat V23 - engrenagem e configurações individuais de canais de texto e voz.",
-  "main": "v21-server.js",
+  "description": "Essência Chat V24 - correção de cargos e simplificação das configurações do servidor.",
+  "main": "v24-server.js",
   "scripts": {
-    "start": "node v21-server.js",
-    "dev": "node v21-server.js"
+    "start": "node v24-server.js",
+    "dev": "node v24-server.js"
   },
   "engines": {
     "node": ">=18"
