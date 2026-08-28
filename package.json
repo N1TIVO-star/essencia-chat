@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
-  "description": "Essência Chat V22 - navegação de Amigos simplificada e refinada.",
+  "description": "Essência Chat V23 - engrenagem e configurações individuais de canais de texto e voz.",
   "main": "v21-server.js",
   "scripts": {
     "start": "node v21-server.js",
