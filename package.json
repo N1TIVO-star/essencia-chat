@@ -1,12 +1,12 @@
 {
   "name": "essencia-chat",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
-  "description": "Essência Chat V20 - pesquisa de mensagens, imagens e arquivos nos servidores.",
-  "main": "presence-lite-server.js",
+  "description": "Essência Chat V21 - presença, home de amigos, membros compactos, perfil de servidor, moderação, edição de canais e convites por PV.",
+  "main": "v21-server.js",
   "scripts": {
-    "start": "node presence-lite-server.js",
-    "dev": "node presence-lite-server.js"
+    "start": "node v21-server.js",
+    "dev": "node v21-server.js"
   },
   "engines": {
     "node": ">=18"
