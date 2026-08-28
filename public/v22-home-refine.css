@@ -1,0 +1,282 @@
+/* V22 — navegação de Amigos mais limpa e refinada */
+
+/* A lateral inicial fica somente com o acesso principal Amigos. */
+#homeSidebar .nav-item[data-home="requests"],
+#homeSidebar #profileBtn{
+  display:none!important;
+}
+
+#homeSidebar{
+  padding-top:10px;
+}
+
+#homeSidebar > .nav-item[data-home="friends"]{
+  position:relative;
+  min-height:46px;
+  margin:0 10px 10px;
+  padding:0 14px;
+  gap:11px;
+  border:1px solid transparent;
+  border-radius:12px;
+  background:transparent;
+  color:var(--v17-muted,#9aa3b4);
+  font-size:13px;
+  font-weight:750;
+  transition:background .16s ease,border-color .16s ease,color .16s ease,transform .16s ease;
+}
+
+#homeSidebar > .nav-item[data-home="friends"]:hover{
+  background:var(--v17-hover,#202737);
+  border-color:var(--v17-border,#2d3543);
+  color:var(--v17-text,#fff);
+}
+
+#homeSidebar > .nav-item[data-home="friends"].active{
+  background:linear-gradient(135deg,rgba(116,92,255,.20),rgba(116,92,255,.08));
+  border-color:rgba(116,92,255,.30);
+  color:var(--v17-text,#fff);
+  box-shadow:inset 3px 0 0 var(--v17-accent,#745cff);
+}
+
+#homeSidebar > .nav-item[data-home="friends"] span{
+  flex:1;
+}
+
+#homeSidebar > .nav-item[data-home="friends"]::after{
+  content:"›";
+  font-size:18px;
+  line-height:1;
+  opacity:.48;
+}
+
+#homeSidebar .sidebar-section{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid rgba(127,137,155,.10);
+}
+
+#homeSidebar .section-title{
+  padding:0 14px 8px;
+  color:var(--v17-muted,#7f8999);
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.11em;
+}
+
+/* Topo da área Amigos */
+#v21HomeTabs{
+  height:58px;
+  padding:0 24px;
+  gap:7px;
+  background:linear-gradient(180deg,var(--v17-top,#0d1119),var(--v17-panel,#11161d));
+  border-bottom:1px solid var(--v17-border,#252d3c);
+  box-shadow:0 5px 24px rgba(0,0,0,.08);
+}
+
+#v21HomeTabs .v21-home-label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding-right:14px;
+  margin-right:4px;
+  border-right:1px solid var(--v17-border,#2d3543);
+  color:var(--v17-text,#fff);
+  font-size:13px;
+  font-weight:850;
+}
+
+#v21HomeTabs .v21-home-tab{
+  min-height:34px;
+  padding:0 13px;
+  border:1px solid transparent;
+  border-radius:9px;
+  background:transparent;
+  color:var(--v17-muted,#a3acbb);
+  font-size:11px;
+  font-weight:750;
+  transition:.15s ease;
+}
+
+#v21HomeTabs .v21-home-tab:hover{
+  background:var(--v17-hover,#202737);
+  color:var(--v17-text,#fff);
+}
+
+#v21HomeTabs .v21-home-tab.active:not(.add){
+  border-color:var(--v17-border,#30394a);
+  background:var(--v17-hover,#252d3b);
+  color:var(--v17-text,#fff);
+  box-shadow:0 5px 16px rgba(0,0,0,.10);
+}
+
+#v21HomeTabs .v21-home-tab.add{
+  margin-left:2px;
+  padding:0 15px;
+  background:linear-gradient(135deg,var(--v17-accent,#745cff),#5d6cff);
+  color:#fff;
+  border-color:rgba(255,255,255,.08);
+  box-shadow:0 7px 20px rgba(116,92,255,.20);
+}
+
+#v21HomeTabs .v21-home-tab.add:hover{
+  filter:brightness(1.08);
+  transform:translateY(-1px);
+}
+
+/* Pesquisa de amigos */
+#v21FriendSearchWrap{
+  padding:16px 22px 8px;
+}
+
+#v21FriendSearch{
+  height:43px;
+  padding:0 14px 0 39px;
+  border-radius:11px;
+  border:1px solid var(--v17-border,#2d3543);
+  background:var(--v17-input,#0d1119);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.015);
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+
+#v21FriendSearch:focus{
+  border-color:var(--v17-accent,#745cff);
+  box-shadow:0 0 0 3px rgba(116,92,255,.10);
+}
+
+#v21FriendSearchWrap{
+  position:relative;
+}
+
+#v21FriendSearchWrap::before{
+  content:"⌕";
+  position:absolute;
+  z-index:2;
+  left:35px;
+  top:26px;
+  color:var(--v17-muted,#8590a1);
+  font-size:17px;
+  pointer-events:none;
+}
+
+/* Lista de amigos mais suave e espaçada */
+#homeView #homeContent.list-card{
+  margin:4px 18px 18px;
+  border-radius:14px;
+  border:1px solid transparent;
+  background:transparent;
+  overflow:hidden;
+}
+
+#homeView #homeContent .person-row{
+  min-height:62px;
+  margin:2px 0;
+  padding:9px 12px;
+  border-radius:11px;
+  border-bottom:0;
+  transition:background .14s ease,transform .14s ease;
+}
+
+#homeView #homeContent .person-row:hover{
+  background:var(--v17-hover,#202737);
+}
+
+#homeView #homeContent .person-row .avatar{
+  width:38px;
+  height:38px;
+}
+
+#homeView #homeContent .person-row .person-meta strong{
+  font-size:12px;
+}
+
+#homeView #homeContent .person-row .person-meta small{
+  margin-top:3px;
+  color:var(--v17-muted,#8f99a9);
+}
+
+#homeView #homeContent .person-row button{
+  min-height:32px;
+  padding:0 11px;
+  border-radius:8px;
+}
+
+/* Tela de adicionar amigo mais organizada */
+.v21-add-friend{
+  max-width:760px;
+  padding:22px 24px 30px;
+}
+
+.v21-add-friend h2{
+  margin:0 0 7px;
+  font-size:20px;
+}
+
+.v21-add-friend p{
+  margin:0;
+  color:var(--v17-muted,#98a2b3);
+  font-size:12px;
+}
+
+.v21-add-row{
+  padding:8px;
+  gap:8px;
+  border:1px solid var(--v17-border,#2d3543);
+  border-radius:13px;
+  background:var(--v17-panel2,#11161d);
+}
+
+.v21-add-row input{
+  border:0;
+  background:transparent;
+}
+
+.v21-add-row input:focus{
+  outline:0;
+}
+
+.v21-add-row button{
+  min-height:40px;
+  padding:0 17px;
+  border-radius:9px;
+  box-shadow:0 6px 16px rgba(116,92,255,.18);
+}
+
+[data-essencia-theme="light"] #homeSidebar > .nav-item[data-home="friends"].active{
+  background:linear-gradient(135deg,rgba(91,79,214,.13),rgba(91,79,214,.05));
+}
+
+@media(max-width:760px){
+  #homeSidebar{
+    padding-top:8px;
+  }
+  #homeSidebar > .nav-item[data-home="friends"]{
+    margin:0 8px 8px;
+  }
+  #v21HomeTabs{
+    height:54px;
+    padding:0 10px;
+    gap:4px;
+  }
+  #v21HomeTabs .v21-home-label{
+    display:none;
+  }
+  #v21HomeTabs .v21-home-tab{
+    min-height:32px;
+    padding:0 10px;
+    white-space:nowrap;
+  }
+  #v21FriendSearchWrap{
+    padding:12px 10px 6px;
+  }
+  #v21FriendSearchWrap::before{
+    left:23px;
+    top:22px;
+  }
+  #homeView #homeContent.list-card{
+    margin:4px 8px 12px;
+  }
+  #homeView #homeContent .person-row{
+    min-height:58px;
+    padding:8px 9px;
+  }
+}
