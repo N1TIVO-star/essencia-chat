@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
-  "description": "Essência Chat V21 - presença, home de amigos, membros compactos, perfil de servidor, moderação, edição de canais e convites por PV.",
+  "description": "Essência Chat V22 - navegação de Amigos simplificada e refinada.",
   "main": "v21-server.js",
   "scripts": {
     "start": "node v21-server.js",
