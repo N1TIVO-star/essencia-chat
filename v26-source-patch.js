@@ -35,7 +35,7 @@ module.exports = function applyV26SourcePatch(source) {
     'let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");',
     `let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");
     if (!html.includes('manifest.webmanifest?v=29')) {
-      html = html.replace('</head>', '  <link rel="manifest" href="/manifest.webmanifest?v=29" />\\n  <link rel="icon" type="image/png" sizes="192x192" href="/essencia-192.png?v=29" />\\n  <link rel="icon" type="image/png" sizes="512x512" href="/essencia-512.png?v=29" />\\n  <link rel="shortcut icon" href="/essencia-192.png?v=29" />\\n  <link rel="apple-touch-icon" href="/essencia-192.png?v=29" />\\n  <meta name="theme-color" content="#745cff" />\\n  <meta name="mobile-web-app-capable" content="yes" />\\n  <meta name="apple-mobile-web-app-capable" content="yes" />\\n  <meta name="apple-mobile-web-app-title" content="Essência" />\\n</head>');
+      html = html.replace('</head>', '  <link rel="manifest" href="/manifest.webmanifest?v=29" />\\n  <link rel="icon" type="image/svg+xml" href="/essencia-icon.svg?v=29" />\\n  <link rel="shortcut icon" href="/essencia-icon.svg?v=29" />\\n  <link rel="apple-touch-icon" href="/essencia-icon.svg?v=29" />\\n  <meta name="theme-color" content="#745cff" />\\n  <meta name="mobile-web-app-capable" content="yes" />\\n  <meta name="apple-mobile-web-app-capable" content="yes" />\\n  <meta name="apple-mobile-web-app-title" content="Essência" />\\n</head>');
     }`,
     'favicon e manifesto runtime V29'
   );
