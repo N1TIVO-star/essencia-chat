@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "private": true,
-  "description": "Essência Chat V26 - logo corrigida, reconexão de chamadas, transmissão mais nítida e colar imagens com Ctrl+V.",
+  "description": "Essência Chat V27 - logo inicial corrigida, transmissão ampliada e imagens de grupos completas.",
   "main": "v26-server.js",
   "scripts": {
     "start": "node v26-server.js",
