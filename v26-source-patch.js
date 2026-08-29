@@ -24,12 +24,16 @@ module.exports = function applyV26SourcePatch(source) {
   source = source.replace('"/v25-final-ui.js"]', '"/v25-final-ui.js", "/v26-stability.js"]');
   source = source.replace('"/v24-admin-fix.js"]', '"/v24-admin-fix.js", "/v26-stability.js"]');
 
+  // V27: amplia transmissão e mostra imagens de grupos completas.
+  source = source.replace('"/v25-final-ui.css"]', '"/v25-final-ui.css", "/v27-media.css"]');
+  source = source.replace('"/v24-admin-fix.css"]', '"/v24-admin-fix.css", "/v27-media.css"]');
+
   // Favicon real no HTML servido em runtime, com versão para quebrar cache antigo.
   replace(
     'let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");',
     `let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");
-    if (!html.includes('essencia-icon.svg?v=26')) {
-      html = html.replace('</head>', '  <link rel="icon" type="image/svg+xml" href="/essencia-icon.svg?v=26" />\\n  <link rel="shortcut icon" href="/essencia-icon.svg?v=26" />\\n  <link rel="apple-touch-icon" href="/essencia-icon.svg?v=26" />\\n</head>');
+    if (!html.includes('essencia-icon.svg?v=27')) {
+      html = html.replace('</head>', '  <link rel="icon" type="image/svg+xml" href="/essencia-icon.svg?v=27" />\\n  <link rel="shortcut icon" href="/essencia-icon.svg?v=27" />\\n  <link rel="apple-touch-icon" href="/essencia-icon.svg?v=27" />\\n</head>');
     }`,
     'favicon runtime'
   );
