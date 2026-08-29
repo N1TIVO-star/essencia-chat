@@ -1,0 +1,92 @@
+/* V27 — mídia ampliada e logos de grupo sem cortes */
+
+/* Botão inicial: usa o SVG inline inserido pelo JS, sem depender de imagem externa. */
+#homeRailBtn.rail-logo{
+  background-image:none!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:3px!important;
+  overflow:hidden!important;
+}
+#homeRailBtn .v25-home-logo{width:100%;height:100%;display:block}
+.v25-brand-inline{width:28px;height:28px;display:block;flex:none}
+
+/* Ícones/imagens de servidores: exibir a arte inteira, sem cortar. */
+.server-icon{overflow:hidden!important;padding:3px!important}
+.server-icon img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  border-radius:12px!important;
+  display:block!important;
+  background:transparent!important;
+}
+.v21-server-preview-icon,.v21-invite-card-icon{
+  object-fit:contain!important;
+  object-position:center!important;
+  padding:2px!important;
+}
+
+/* Transmissão dentro da call: a tela compartilhada vira o conteúdo principal. */
+.voice-stage{min-width:0!important}
+.video-grid:has(.video-tile.local-sharing),
+.video-grid:has(.video-tile.remote-sharing){
+  grid-template-columns:minmax(0,1fr)!important;
+  align-content:stretch!important;
+  align-items:stretch!important;
+  padding:10px 0!important;
+}
+.video-grid:has(.video-tile.local-sharing) .video-tile.local-sharing,
+.video-grid:has(.video-tile.remote-sharing) .video-tile.remote-sharing{
+  width:100%!important;
+  height:100%!important;
+  min-height:min(68vh,760px)!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  grid-column:1/-1!important;
+}
+.video-tile.local-sharing video,
+.video-tile.remote-sharing video{
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#000!important;
+}
+
+/* Se houver outros participantes, ficam em miniaturas abaixo da transmissão. */
+.video-grid:has(.video-tile.local-sharing) .video-tile:not(.local-sharing),
+.video-grid:has(.video-tile.remote-sharing) .video-tile:not(.remote-sharing){
+  min-height:120px!important;
+  max-height:180px!important;
+  aspect-ratio:16/9!important;
+}
+
+/* Overlay aberto sem fullscreen: aproveitar praticamente toda a área útil. */
+.stream-overlay-body{padding:0!important;display:flex!important;min-height:0!important}
+.stream-player-shell{
+  flex:1 1 auto!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  padding:0!important;
+  background:#000!important;
+}
+#streamOverlayVideo{
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+
+@media(max-width:760px){
+  .video-grid:has(.video-tile.local-sharing) .video-tile.local-sharing,
+  .video-grid:has(.video-tile.remote-sharing) .video-tile.remote-sharing{
+    min-height:55vh!important;
+  }
+}
