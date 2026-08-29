@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "private": true,
-  "description": "Essência Chat V28 - versão instalável PWA com botão de download no próprio site.",
+  "description": "Essência Chat V29 - logo corrigida na tela inicial e instalação do aplicativo disponível antes do login.",
   "main": "v28-server.js",
   "scripts": {
     "start": "node v28-server.js",
