@@ -1,10 +1,13 @@
-const CACHE = 'essencia-v28-shell';
+const CACHE = 'essencia-v29-shell';
 const SHELL = [
   '/',
-  '/manifest.webmanifest',
-  '/essencia-icon.svg?v=28',
+  '/manifest.webmanifest?v=29',
+  '/essencia-icon.svg?v=29',
   '/styles.css',
-  '/app.js'
+  '/app.js',
+  '/v25-final-ui.js',
+  '/v28-pwa.css',
+  '/v28-pwa.js'
 ];
 
 self.addEventListener('install', event => {
@@ -25,7 +28,6 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  // Não tenta cachear conexões, APIs, uploads ou socket em tempo real.
   if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/socket.io/') || url.pathname.startsWith('/uploads/')) return;
 
   if (req.mode === 'navigate') {
