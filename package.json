@@ -1,12 +1,12 @@
 {
   "name": "essencia-chat",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "private": true,
-  "description": "Essência Chat V25 - interface final clean, minimalista e responsiva com nova identidade visual.",
-  "main": "v25-server.js",
+  "description": "Essência Chat V26 - logo corrigida, reconexão de chamadas, transmissão mais nítida e colar imagens com Ctrl+V.",
+  "main": "v26-server.js",
   "scripts": {
-    "start": "node v25-server.js",
-    "dev": "node v25-server.js"
+    "start": "node v26-server.js",
+    "dev": "node v26-server.js"
   },
   "engines": {
     "node": ">=18"
