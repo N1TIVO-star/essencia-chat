@@ -1,3 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-<image width="512" height="512" href="data:image/webp;base64,UklGRlo4AABXRUJQVlA4IE44AABQ1QKdASoAAgABPpFCm0mkIqGYloAOgM0gWlt/3+AZ7i9wknllwpKEJaEES7XjP/ONx+L3JvY5/7jYFj9u/xaubKfPw8jyf57f7cnPmPKP5/1+tiTnbtiW2eL49DCSnseSgMPSy3iTcZo7x2fZ0jExm3wtOpvDn9eH7ax++Z/gf29M9nO+58rSp5W5yp2l9sWykPV0iY87N45udjT+bk9zHndkfdj6Gjbkg2a96W1J4OeeizO+f7SwuP4nnGU7R7JrQYgTXbckFWv1aFsY6wD4qQLX6sryXQGuq7qA2dspxpwHm6poDu7B4P9dnm0gVQH2H6feuM0N/cBgmwHoR5+Xm4xktWQvJ7Z8yeECaeFTY/Y4IMsL1jViDdmkgu1xWmhL7vJ8G6aSz+BciLOpoNs/CVjILk6DhNDcDI4Ju/k//hwEW/j39P/SwY/3//i+bIv//4D9vJ9f/8+nz/8r+O3f/5fD1//5+u4w/+H/mI/+19oBrszNDXebd2BAzRe9SQNBYQsqYa4OX/II1JKzrKgHOaYV33sqp8KwMZR/u4tiQEP3g9tQR6k6FmQKVpTNFwKSqQGmVRI85WS41yOf2nBo04oE0DdwYjuvOFTEIe3oFyKWmn62irEfZVoXq0KHtXv2BglHj0bl6HyG1qPNw1VkcxbxsN78zL4aO1n0iLa0wBd4j6CIyRQoF2ONepgOuoA9yGZ3lO4XyG8w5bvWYQKyc25wt3KgqzIJIE+aMTsbVSA3zfajhtNWDaNb5ZaLtoWL3KXopReMXA5FEPg7bD/u47EpqKZKJ/Yx0pJw/oF+klP4qP4f8gk76no1pF8uJ2N+mxZxDk0R9Dk48UQzeyDTde2WuMiYiMkfna9SjbcEORPO6rXei/yHlFhejoIjwDFvbYh4u5pucil6AZOeYl0QJwwUp8K1rMblbV8lEuF8oMLm9cOH3faiFmiY/q7uFmMFSIYAHmjETtL8LwPfwN1+6IQT5dQ2XfXbvb9p5eX4lZ8ok8VNEXmzQ+JaO0Nf0p2yqfuMs4kqe2loTQ4CAjPdodDDbpjyjS3sHRW8QGsK/DtyxV84d9x1Mck5DDNRNFx+0kLd5TBKd2LZZ1OVDrr54MeSdeWLwsKx3GQFO0bYI1QzZDDC6QiK0kE7tuGfp8H8W+t6DRzTI+7VWwt8EhIOlmSwR8dPA+rvUiDt+lHlJ6CYtIuGm0ywGepjtHnVEnx6MB/Fs88XsPVupER7EPBdqrVTIPQ7PyffY6guH0JRc0SXlQaHvK20TlLPDYc3XUbiirQSfaAKajUbbaVeaawe+FV6x5T3Rsv4dOtq8rgf5PoMpU+j/1x8G3vZ5AVmsFSqRE+tCeiK9wPA5lfH1gTvxxopWTMRlfswi2k9R/4UqvR8RZg3EutlCXDpcD2hZV+5D7LD77oYrz2jbqo2bhQiAA==" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Essência">
+  <defs>
+    <linearGradient id="ring" x1="78" y1="92" x2="432" y2="428" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20c8ff"/>
+      <stop offset=".47" stop-color="#5d65ff"/>
+      <stop offset="1" stop-color="#c44cff"/>
+    </linearGradient>
+    <linearGradient id="left" x1="86" y1="238" x2="262" y2="446" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#27dcff"/>
+      <stop offset="1" stop-color="#2766ff"/>
+    </linearGradient>
+    <linearGradient id="center" x1="256" y1="205" x2="256" y2="438" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e68bff"/>
+      <stop offset=".5" stop-color="#8c51ff"/>
+      <stop offset="1" stop-color="#5334e8"/>
+    </linearGradient>
+    <linearGradient id="right" x1="430" y1="238" x2="250" y2="446" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f05cff"/>
+      <stop offset="1" stop-color="#6641ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="202" fill="#080b1c"/>
+  <path d="M100 330A202 202 0 1 1 412 330" fill="none" stroke="url(#ring)" stroke-width="19" stroke-linecap="round"/>
+  <g>
+    <rect x="208" y="142" width="16" height="54" rx="8" fill="#5ba8ff"/>
+    <rect x="242" y="120" width="18" height="86" rx="9" fill="url(#ring)"/>
+    <rect x="278" y="142" width="16" height="54" rx="8" fill="#9b62ff"/>
+    <rect x="177" y="156" width="14" height="34" rx="7" fill="#32affe"/>
+    <rect x="321" y="156" width="14" height="34" rx="7" fill="#ad57ff"/>
+  </g>
+  <circle cx="143" cy="251" r="43" fill="url(#left)"/>
+  <circle cx="256" cy="271" r="47" fill="url(#center)"/>
+  <circle cx="369" cy="251" r="43" fill="url(#right)"/>
+  <path d="M72 360c16-61 61-92 117-82 43 8 77 42 92 88-34 21-66 49-86 86-44-20-87-47-123-92z" fill="url(#left)"/>
+  <path d="M182 433c8-82 32-123 74-123s66 41 74 123l-74 47-74-47z" fill="url(#center)"/>
+  <path d="M440 360c-16-61-61-92-117-82-43 8-77 42-92 88 34 21 66 49 86 86 44-20 87-47 123-92z" fill="url(#right)"/>
 </svg>
