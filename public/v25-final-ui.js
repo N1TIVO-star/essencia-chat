@@ -39,7 +39,11 @@
 
     const brandMark = document.querySelector('.brand-mark');
     if (brandMark) {
-      brandMark.textContent = '';
+      if (!brandMark.querySelector('.v25-login-logo')) {
+        brandMark.innerHTML = brandSvg('v25-login','v25-login-logo');
+      }
+      brandMark.style.backgroundImage = 'none';
+      brandMark.style.background = 'transparent';
       brandMark.setAttribute('aria-label','Essência');
     }
 
