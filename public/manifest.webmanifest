@@ -5,6 +5,7 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "orientation": "any",
   "background_color": "#070916",
   "theme_color": "#745cff",
@@ -12,7 +13,7 @@
   "categories": ["social", "communication"],
   "icons": [
     {
-      "src": "/essencia-icon.svg?v=28",
+      "src": "/essencia-icon.svg?v=29",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
