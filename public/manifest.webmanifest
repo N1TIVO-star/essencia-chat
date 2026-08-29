@@ -1,0 +1,28 @@
+{
+  "name": "Essência",
+  "short_name": "Essência",
+  "description": "Essência — voz, conexão e comunidade.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070916",
+  "theme_color": "#745cff",
+  "lang": "pt-BR",
+  "categories": ["social", "communication"],
+  "icons": [
+    {
+      "src": "/essencia-icon.svg?v=28",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Abrir Essência",
+      "short_name": "Abrir",
+      "url": "/"
+    }
+  ]
+}
