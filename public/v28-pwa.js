@@ -10,7 +10,10 @@
 
   async function registerServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
-    try { await navigator.serviceWorker.register('/sw.js?v=29', { scope:'/' }); } catch {}
+    try {
+      const reg = await navigator.serviceWorker.register('/sw.js?v=3012', { scope:'/', updateViaCache:'none' });
+      reg.update().catch(() => {});
+    } catch {}
   }
 
   function ensureManifest() {
@@ -20,7 +23,9 @@
       link.rel = 'manifest';
       document.head.appendChild(link);
     }
-    link.href = '/manifest.webmanifest?v=29';
+    if (link.getAttribute('href') !== '/manifest.webmanifest?v=29') {
+      link.href = '/manifest.webmanifest?v=29';
+    }
 
     let theme = document.querySelector('meta[name="theme-color"]');
     if (!theme) {
@@ -28,7 +33,7 @@
       theme.name = 'theme-color';
       document.head.appendChild(theme);
     }
-    theme.content = '#745cff';
+    if (theme.content !== '#745cff') theme.content = '#745cff';
   }
 
   function buttonMarkup(compact = false) {
@@ -68,21 +73,26 @@
     installButtons = [...document.querySelectorAll('#v28InstallApp,#v29InstallLogin')];
   }
 
+  function setTextIfChanged(el, value) {
+    if (el && el.textContent !== value) el.textContent = value;
+  }
+
   function refreshButtons() {
     collectButtons();
+    const standalone = isStandalone();
     for (const button of installButtons) {
       const strong = button.querySelector('strong');
       const small = button.querySelector('small');
-      if (isStandalone()) {
+      if (standalone) {
         button.classList.add('installed');
         button.disabled = true;
-        if (strong) strong.textContent = 'Essência instalado';
-        if (small) small.textContent = 'Você está usando o aplicativo';
+        setTextIfChanged(strong, 'Essência instalado');
+        setTextIfChanged(small, 'Você está usando o aplicativo');
       } else {
         button.classList.remove('installed');
         button.disabled = false;
-        if (strong) strong.textContent = 'Baixar Essência';
-        if (small) small.textContent = deferredInstallPrompt ? 'Instalar agora' : 'Instalar aplicativo';
+        setTextIfChanged(strong, 'Baixar Essência');
+        setTextIfChanged(small, deferredInstallPrompt ? 'Instalar agora' : 'Instalar aplicativo');
       }
     }
   }
@@ -144,11 +154,10 @@
     try { toast('Essência instalado com sucesso.'); } catch {}
   });
 
+  // IMPORTANTE: sem MutationObserver global aqui.
+  // A versão anterior reescrevia textos dentro do próprio observer, gerando
+  // novas mutações continuamente e podendo deixar a página em 100% de loop.
   ensureManifest();
   registerServiceWorker();
   makeButtons();
-
-  const observer = new MutationObserver(() => makeButtons());
-  observer.observe(document.body, { childList:true, subtree:true });
-  window.addEventListener('beforeunload', () => observer.disconnect(), { once:true });
 })();
