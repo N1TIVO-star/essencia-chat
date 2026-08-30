@@ -1,4 +1,4 @@
-/* Essência V30.2 — correções visuais isoladas */
+/* Essência V30.3 — correções visuais isoladas */
 
 /* Botão E sempre visível para voltar ao menu principal */
 #homeRailBtn{
@@ -74,7 +74,7 @@
 }
 #voiceChannels .voice-participants{padding:0 10px 2px 22px!important}
 
-/* O picker agora é somente GIF */
+/* Picker somente de GIF */
 #v17GifPicker [data-v17-picker-tab="emoji"]{display:none!important}
 #v17GifPicker .v17-picker-tabs{display:block!important}
 #v17GifPicker .v17-picker-tab[data-v17-picker-tab="gifs"]{
@@ -83,30 +83,60 @@
 }
 #v17GifUpload{display:none!important}
 #v17GifSearch::placeholder{color:var(--v17-muted,#8f99aa)!important}
-.v302-tenor-state{
+
+.v303-gif-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:0 12px 12px;
+}
+.v303-gif-actions button{
+  min-height:42px;
+  border:1px solid var(--v17-line,#2b3342);
+  border-radius:10px;
+  background:var(--v17-card-2,#202637);
+  color:var(--v17-text,#fff);
+  font-weight:800;
+  cursor:pointer;
+  transition:.15s ease;
+}
+.v303-gif-actions button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(124,92,255,.32);
+  background:rgba(124,92,255,.14);
+}
+.v303-gif-link{
+  background:linear-gradient(135deg,rgba(124,92,255,.16),rgba(75,141,248,.12))!important;
+}
+.v303-gif-device{
+  background:rgba(255,255,255,.04)!important;
+}
+.v303-gif-empty{
   grid-column:1/-1;
-  padding:28px 14px;
+  min-height:150px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:24px;
   text-align:center;
   color:var(--v17-muted,#8f99aa);
-  font-size:12px;
-  line-height:1.5;
+  line-height:1.45;
 }
-.v302-tenor-brand{
-  grid-column:1/-1;
-  display:flex;
-  justify-content:flex-end;
-  padding:6px 4px 2px;
-  color:var(--v17-muted,#8f99aa);
-  font-size:9px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
+.v303-gif-empty b{color:var(--v17-text,#fff);font-size:13px}
+.v303-gif-empty code{
+  padding:2px 5px;
+  border-radius:6px;
+  background:rgba(124,92,255,.12);
+  color:var(--v17-text,#fff);
 }
-.v302-tenor-tile{
+.v303-gif-tile{
   position:relative;
   overflow:hidden;
   min-height:120px;
 }
-.v302-tenor-tile img{
+.v303-gif-tile img{
   width:100%;
   height:100%;
   min-height:120px;
@@ -122,10 +152,22 @@ html[data-essencia-theme="light"] #voiceChannels .voice-channel-wrap.v23-channel
 html[data-essencia-theme="light"] #voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
   color:#67758a!important;
 }
+html[data-essencia-theme="light"] .v303-gif-actions button{
+  background:rgba(241,244,248,.70)!important;
+  color:#263249!important;
+  border-color:rgba(73,87,111,.14)!important;
+}
+html[data-essencia-theme="light"] .v303-gif-link{
+  background:linear-gradient(135deg,rgba(105,92,214,.11),rgba(75,141,248,.08))!important;
+}
+html[data-essencia-theme="light"] .v303-gif-device{
+  background:rgba(255,255,255,.52)!important;
+}
 
 @media(max-width:760px){
   #voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
     opacity:.72!important;
     transform:none!important;
   }
+  .v303-gif-actions{grid-template-columns:1fr}
 }
