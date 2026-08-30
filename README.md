@@ -1,13 +1,17 @@
-# Essência Chat V3.0.3 / V30.3
+# Essência Chat V3.0.1 / V30.1
 
 Versão atual do Essência.
 
-## Novidades da V30.3
+## Novidades da V30.1
 
-- O menu de GIFs não depende mais de Tenor ou GIPHY.
-- Agora você pode **colar um link direto de GIF** terminado em `.gif` e enviar na hora.
-- Também pode **enviar um GIF direto do computador ou celular**.
-- Os GIFs usados recentemente ficam salvos no navegador para reutilizar com um clique.
-- A aba **Emoji** continua fora do menu de GIF, porque o Essência já tem um seletor próprio de emojis.
-- Mantidas as correções da V30.2: engrenagem dos canais de voz alinhada e botão **E** para voltar ao menu principal.
-- Site e aplicativo usam a mesma base e recebem as mesmas correções.
+- Rework completo do **modo Light**.
+- Light deixa de ser branco fosco e passa a usar **branco/cinza translúcido**, com aparência de vidro.
+- Fundos com cinza claro, lilás e azul muito suaves para dar profundidade.
+- Sidebar, topbar, painel de membros, composer e configurações mais transparentes.
+- Contraste de textos corrigido para evitar partes apagadas.
+- Abas **Amigos / Disponível / Todos / Pendentes / Adicionar amigo** mais legíveis no Light.
+- Inputs e buscas com vidro branco/cinza, sem blocos brancos chapados.
+- Mensagens, mídia, cards e painéis com profundidade e sombras mais leves.
+- Tema Dark permanece como estava.
+- Site e aplicativo continuam usando a mesma base.
+- Alteração aplicada apenas via CSS seguro, sem mexer na lógica de voz, transmissão, PWA ou backend.
