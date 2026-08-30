@@ -1,19 +1,19 @@
-# Changelog — Essência V3.0
+# Changelog — Essência V3.0.1 / V30.1
 
 ## O que há de novo
 
-- Interface dos canais mais clean e minimalista.
-- Engrenagem de configuração integrada ao próprio canal.
-- Canal + engrenagem agora formam um único bloco com uma única borda.
-- O botão de configuração aparece no hover/foco, deixando a lateral menos poluída.
-- Removido o destaque fixo forte do canal selecionado.
-- Botão **E** para voltar ao menu principal.
-- Modo Light refinado com branco/cinza translúcido e sem grandes áreas pretas.
-- PWA/aplicativo mantido junto com o site.
-- Hotfix aplicado para restaurar a inicialização do site e do aplicativo após a atualização visual da V3.0.
+- Rework completo do modo Light.
+- Visual Light agora usa branco/cinza translúcido, em vez de branco fosco.
+- Mais transparência e efeito de vidro na estrutura principal.
+- Fundos com cinza claro e acentos lilás/azul muito suaves.
+- Sidebar, topbar, membros, composer e configurações com melhor profundidade visual.
+- Corrigida a legibilidade de textos e abas que estavam apagados no Light.
+- Campos de busca e inputs ganharam contraste e transparência melhores.
+- Cards, mensagens, mídia e painéis deixaram de parecer blocos brancos chapados.
+- Tema Dark não foi alterado.
+- Site e aplicativo continuam na mesma base e recebem a mesma interface.
+- Atualização feita somente em CSS para preservar a estabilidade do site/app.
 
 ## Status
 
-**Versão atual: 3.0.0**
-
-Site e aplicativo usam a mesma base e devem receber as mesmas correções e atualizações.
+**Versão atual: 3.0.1 / V30.1**
