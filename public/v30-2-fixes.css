@@ -1,0 +1,131 @@
+/* Essência V30.2 — correções visuais isoladas */
+
+/* Botão E sempre visível para voltar ao menu principal */
+#homeRailBtn{
+  background-image:none!important;
+  font-size:0!important;
+  display:grid!important;
+  place-items:center!important;
+  overflow:hidden!important;
+}
+#homeRailBtn::before{
+  content:"E";
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  font-size:18px;
+  font-weight:900;
+  color:#fff;
+  background:linear-gradient(135deg,#775fff,#4d8cff);
+  box-shadow:0 8px 24px rgba(89,78,214,.24),inset 0 1px 0 rgba(255,255,255,.18);
+}
+#homeRailBtn:hover::before{transform:translateY(-1px)}
+#homeRailBtn>*{display:none!important}
+
+/* Canais de voz: engrenagem no mesmo bloco do canal, nunca solta embaixo */
+#voiceChannels .voice-channel-wrap.v23-channel-host{
+  position:relative!important;
+  display:block!important;
+  padding-right:0!important;
+  margin-bottom:5px!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.channel-item{
+  width:calc(100% - 20px)!important;
+  margin:3px 10px!important;
+  padding-right:46px!important;
+  min-height:42px!important;
+  border:1px solid transparent!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host:hover>.channel-item,
+#voiceChannels .voice-channel-wrap.v23-channel-host:focus-within>.channel-item{
+  background:rgba(124,92,255,.075)!important;
+  border-color:rgba(124,92,255,.20)!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
+  position:absolute!important;
+  right:10px!important;
+  top:3px!important;
+  width:38px!important;
+  height:42px!important;
+  min-width:38px!important;
+  margin:0!important;
+  border-radius:0 12px 12px 0!important;
+  border-left:1px solid transparent!important;
+  background:transparent!important;
+  color:var(--v25-muted,#96a0b5)!important;
+  opacity:0!important;
+  transform:translateX(4px)!important;
+  z-index:4!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host:hover>.v23-channel-gear,
+#voiceChannels .voice-channel-wrap.v23-channel-host:focus-within>.v23-channel-gear{
+  opacity:1!important;
+  transform:none!important;
+  border-left-color:rgba(148,163,184,.12)!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear:hover{
+  background:rgba(124,92,255,.12)!important;
+  color:var(--v25-text,#fff)!important;
+}
+#voiceChannels .voice-participants{padding:0 10px 2px 22px!important}
+
+/* O picker agora é somente GIF */
+#v17GifPicker [data-v17-picker-tab="emoji"]{display:none!important}
+#v17GifPicker .v17-picker-tabs{display:block!important}
+#v17GifPicker .v17-picker-tab[data-v17-picker-tab="gifs"]{
+  pointer-events:none;
+  cursor:default;
+}
+#v17GifUpload{display:none!important}
+#v17GifSearch::placeholder{color:var(--v17-muted,#8f99aa)!important}
+.v302-tenor-state{
+  grid-column:1/-1;
+  padding:28px 14px;
+  text-align:center;
+  color:var(--v17-muted,#8f99aa);
+  font-size:12px;
+  line-height:1.5;
+}
+.v302-tenor-brand{
+  grid-column:1/-1;
+  display:flex;
+  justify-content:flex-end;
+  padding:6px 4px 2px;
+  color:var(--v17-muted,#8f99aa);
+  font-size:9px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.v302-tenor-tile{
+  position:relative;
+  overflow:hidden;
+  min-height:120px;
+}
+.v302-tenor-tile img{
+  width:100%;
+  height:100%;
+  min-height:120px;
+  object-fit:cover;
+  display:block;
+}
+
+html[data-essencia-theme="light"] #voiceChannels .voice-channel-wrap.v23-channel-host:hover>.channel-item,
+html[data-essencia-theme="light"] #voiceChannels .voice-channel-wrap.v23-channel-host:focus-within>.channel-item{
+  background:rgba(105,92,214,.075)!important;
+  border-color:rgba(105,92,214,.16)!important;
+}
+html[data-essencia-theme="light"] #voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
+  color:#67758a!important;
+}
+
+@media(max-width:760px){
+  #voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
+    opacity:.72!important;
+    transform:none!important;
+  }
+}
