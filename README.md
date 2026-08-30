@@ -1,27 +1,17 @@
-# Essência Chat V3.0
+# Essência Chat V3.0.1 / V30.1
 
 Versão atual do Essência.
 
-## Novidades da V3.0
+## Novidades da V30.1
 
-- Interface dos canais mais clean e minimalista.
-- Botão de configuração do canal integrado ao próprio item do canal.
-- Borda única envolvendo nome do canal e engrenagem.
-- Engrenagem aparece apenas ao passar o mouse ou focar o canal.
-- Removido o destaque fixo pesado do canal selecionado.
-- Botão **E** para voltar ao menu principal.
-- Modo Light mais claro, branco/cinza e translúcido.
-- Mantidas as funções de chat, voz, transmissão, perfis, cargos, moderação, pesquisa e PWA/aplicativo.
-- Hotfix aplicado para restaurar a inicialização do site e do aplicativo sem carregar JS extra da V3.0.
-
-## Atualização
-
-A Square Cloud faz o deploy automaticamente a partir da branch `main`.
-
-Depois do deploy, recarregue com:
-
-```text
-Ctrl + F5
-```
-
-No aplicativo instalado, feche completamente e abra novamente para carregar a versão nova.
+- Rework completo do **modo Light**.
+- Light deixa de ser branco fosco e passa a usar **branco/cinza translúcido**, com aparência de vidro.
+- Fundos com cinza claro, lilás e azul muito suaves para dar profundidade.
+- Sidebar, topbar, painel de membros, composer e configurações mais transparentes.
+- Contraste de textos corrigido para evitar partes apagadas.
+- Abas **Amigos / Disponível / Todos / Pendentes / Adicionar amigo** mais legíveis no Light.
+- Inputs e buscas com vidro branco/cinza, sem blocos brancos chapados.
+- Mensagens, mídia, cards e painéis com profundidade e sombras mais leves.
+- Tema Dark permanece como estava.
+- Site e aplicativo continuam usando a mesma base.
+- Alteração aplicada apenas via CSS seguro, sem mexer na lógica de voz, transmissão, PWA ou backend.
