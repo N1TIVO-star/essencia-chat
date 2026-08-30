@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
-  "description": "Essência Chat V3.0 - refresh clean/minimalista, canais integrados, Light translúcido e changelog completo.",
+  "description": "Essência Chat V30.1 - rework completo do modo Light com branco/cinza translúcido e melhor contraste.",
   "main": "v28-server.js",
   "scripts": {
     "start": "node v28-server.js",
