@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "3.0.3",
+  "version": "3.0.1",
   "private": true,
-  "description": "Essência Chat V30.3 - GIF por link direto ou dispositivo, sem dependência de Tenor/GIPHY.",
+  "description": "Essência Chat V30.1 - rework completo do modo Light com branco/cinza translúcido e melhor contraste.",
   "main": "v28-server.js",
   "scripts": {
     "start": "node v28-server.js",
