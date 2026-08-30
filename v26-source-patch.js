@@ -20,24 +20,22 @@ module.exports = function applyV26SourcePatch(source) {
     'configuração Socket.IO'
   );
 
-  // Carrega as camadas cliente finais.
-  source = source.replace('"/v25-final-ui.js"]', '"/v25-final-ui.js", "/v26-stability.js", "/v28-pwa.js"]');
-  source = source.replace('"/v24-admin-fix.js"]', '"/v24-admin-fix.js", "/v26-stability.js", "/v28-pwa.js"]');
-  source = source.replace('"/v26-stability.js"]', '"/v26-stability.js", "/v28-pwa.js"]');
+  // Carrega a camada cliente V26 por último.
+  source = source.replace('"/v25-final-ui.js"]', '"/v25-final-ui.js", "/v26-stability.js"]');
+  source = source.replace('"/v24-admin-fix.js"]', '"/v24-admin-fix.js", "/v26-stability.js"]');
 
   // V27: amplia transmissão e mostra imagens de grupos completas.
-  source = source.replace('"/v25-final-ui.css"]', '"/v25-final-ui.css", "/v27-media.css", "/v28-pwa.css"]');
-  source = source.replace('"/v24-admin-fix.css"]', '"/v24-admin-fix.css", "/v27-media.css", "/v28-pwa.css"]');
-  source = source.replace('"/v27-media.css"]', '"/v27-media.css", "/v28-pwa.css"]');
+  source = source.replace('"/v25-final-ui.css"]', '"/v25-final-ui.css", "/v27-media.css"]');
+  source = source.replace('"/v24-admin-fix.css"]', '"/v24-admin-fix.css", "/v27-media.css"]');
 
-  // V29: favicon + manifesto reais no HTML servido em runtime.
+  // Favicon real no HTML servido em runtime, com versão para quebrar cache antigo.
   replace(
     'let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");',
     `let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");
-    if (!html.includes('manifest.webmanifest?v=29')) {
-      html = html.replace('</head>', '  <link rel="manifest" href="/manifest.webmanifest?v=29" />\\n  <link rel="icon" type="image/svg+xml" href="/essencia-icon.svg?v=29" />\\n  <link rel="shortcut icon" href="/essencia-icon.svg?v=29" />\\n  <link rel="apple-touch-icon" href="/essencia-icon.svg?v=29" />\\n  <meta name="theme-color" content="#745cff" />\\n  <meta name="mobile-web-app-capable" content="yes" />\\n  <meta name="apple-mobile-web-app-capable" content="yes" />\\n  <meta name="apple-mobile-web-app-title" content="Essência" />\\n</head>');
+    if (!html.includes('essencia-icon.svg?v=27')) {
+      html = html.replace('</head>', '  <link rel="icon" type="image/svg+xml" href="/essencia-icon.svg?v=27" />\\n  <link rel="shortcut icon" href="/essencia-icon.svg?v=27" />\\n  <link rel="apple-touch-icon" href="/essencia-icon.svg?v=27" />\\n</head>');
     }`,
-    'favicon e manifesto runtime V29'
+    'favicon runtime'
   );
 
   return source;
