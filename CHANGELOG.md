@@ -1,18 +1,15 @@
-# Changelog — Essência V3.0.2 / V30.2
+# Changelog — Essência V3.0.3 / V30.3
 
 ## O que há de novo
 
-- Engrenagem dos canais de voz corrigida e integrada ao mesmo bloco do canal.
-- Botão **E** restaurado no topo da barra lateral para abrir o menu principal.
-- Picker de GIFs simplificado: removida a aba Emoji.
-- Busca de GIFs integrada ao **Tenor**.
-- Biblioteca online em grade, sem depender de GIFs enviados manualmente.
-- Removido o botão de upload manual de GIF no picker.
-- Proxy do Tenor no servidor para manter `TENOR_API_KEY` fora do navegador.
+- Removida a dependência de Tenor/GIPHY no menu de GIFs.
+- Agora é possível **adicionar GIF por link direto** terminado em `.gif`.
+- Também é possível **enviar GIF do computador ou celular** diretamente pelo picker.
+- GIFs recentes ficam disponíveis para reutilização rápida.
+- A aba Emoji permanece removida do menu de GIFs.
+- Mantidas as correções da V30.2: engrenagem dos canais de voz alinhada e botão **E** restaurado.
 - Site e aplicativo continuam usando a mesma base.
 
 ## Status
 
-**Versão atual: 3.0.2 / V30.2**
-
-Para ativar a biblioteca Tenor na produção, configure `TENOR_API_KEY` nas variáveis de ambiente da Square Cloud.
+**Versão atual: 3.0.3 / V30.3**
