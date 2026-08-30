@@ -10,10 +10,7 @@
 
   async function registerServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
-    try {
-      const registration = await navigator.serviceWorker.register('/sw.js?v=301-recovery-1', { scope:'/' });
-      await registration.update();
-    } catch {}
+    try { await navigator.serviceWorker.register('/sw.js?v=29', { scope:'/' }); } catch {}
   }
 
   function ensureManifest() {
