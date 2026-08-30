@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "private": true,
-  "description": "Essência Chat V30.2 - engrenagem dos canais de voz corrigida, botão E restaurado e biblioteca Tenor integrada.",
+  "description": "Essência Chat V30.3 - GIF por link direto ou dispositivo, sem dependência de Tenor/GIPHY.",
   "main": "v28-server.js",
   "scripts": {
     "start": "node v28-server.js",
