@@ -135,6 +135,35 @@
   place-items:center!important;
 }
 
+/* Indicador de fala: nunca pinta o cartão/linha inteira; somente o avatar. */
+.video-tile.speaking,
+.video-tile.speaking-lite{
+  border-color:inherit!important;
+  box-shadow:none!important;
+  outline:none!important;
+}
+.voice-participant.speaking,
+.voice-participant.speaking-lite,
+.active-call-person.speaking,
+.active-call-person.speaking-lite,
+.stream-participant.speaking,
+.stream-participant.speaking-lite{
+  background:transparent!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+  outline:none!important;
+}
+.video-tile.speaking .avatar,
+.video-tile.speaking-lite .avatar,
+.voice-participant.speaking .avatar,
+.voice-participant.speaking-lite .avatar,
+.active-call-person.speaking .avatar,
+.active-call-person.speaking-lite .avatar,
+.stream-participant.speaking .avatar,
+.stream-participant.speaking-lite .avatar{
+  box-shadow:0 0 0 2px #2fd18b,0 0 11px rgba(47,209,139,.28)!important;
+}
+
 @media(max-width:760px){
   .v31-call-quick-actions{gap:4px;padding:6px}
   .v31-call-quick-actions button{min-height:40px}
