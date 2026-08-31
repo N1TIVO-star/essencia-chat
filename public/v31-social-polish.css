@@ -1,12 +1,13 @@
 /* Essência V31 Social — status, preview do servidor e convites. */
 
 #addFriendTopBtn.v31-remove-isolated-add{display:none!important}
+#v30SafeInstallSidebar.v31-hide-install-sidebar{display:none!important}
 
 .me-bar.v31-me-status-bar{
   display:grid!important;
   grid-template-columns:auto auto minmax(0,1fr) auto auto auto!important;
   align-items:center!important;
-  gap:6px!important;
+  gap:7px!important;
 }
 .me-bar.v31-me-status-bar .me-meta{min-width:0!important}
 .me-bar.v31-me-status-bar .me-meta strong{
@@ -23,41 +24,23 @@
   white-space:nowrap!important;
 }
 .v31-hide-old-status{display:none!important}
+.v31-quick-status-picker{display:none!important}
 
-.v31-quick-status-picker{
-  display:flex;
-  flex-direction:column;
-  gap:3px;
-  align-items:center;
-  justify-content:center;
-}
-.v31-quick-status-picker button{
-  width:13px;
-  height:13px;
-  min-width:13px;
+.v31-active-status-dot{
+  width:12px;
+  height:12px;
+  min-width:12px;
   padding:0;
-  border:0;
-  border-radius:50%;
-  background:transparent;
-  display:grid;
-  place-items:center;
-  opacity:.48;
-}
-.v31-quick-status-picker button:hover,
-.v31-quick-status-picker button.active{opacity:1}
-.v31-status-dot{
-  width:8px;
-  height:8px;
+  border:2px solid #0b1020;
   border-radius:50%;
   display:block;
-  box-shadow:0 0 0 2px rgba(255,255,255,.06);
+  cursor:pointer;
+  box-shadow:0 0 0 1px rgba(255,255,255,.06);
 }
-.v31-status-dot.online{background:#2fd18b}
-.v31-status-dot.dnd{background:#f05261}
-.v31-status-dot.invisible{background:#667085}
-.v31-quick-status-picker button.active .v31-status-dot{
-  box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 0 4px rgba(116,92,255,.12);
-}
+.v31-active-status-dot.online{background:#2fd18b}
+.v31-active-status-dot.dnd{background:#f05261}
+.v31-active-status-dot.invisible{background:#667085}
+.v31-active-status-dot:hover{transform:scale(1.08)}
 
 .v21-server-preview-icon img{
   width:100%!important;
@@ -207,7 +190,6 @@ html[data-essencia-theme="light"] .v31-invite-empty{color:#657388}
 
 @media(max-width:760px){
   .me-bar.v31-me-status-bar{grid-template-columns:auto auto minmax(0,1fr) auto auto auto!important;gap:4px!important}
-  .v31-quick-status-picker{gap:2px}
   .v31-invite-overlay{padding:10px}
   .v31-invite-dialog{width:100%;max-height:calc(100vh - 20px);padding:16px}
 }
