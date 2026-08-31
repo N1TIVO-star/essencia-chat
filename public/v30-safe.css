@@ -1,0 +1,272 @@
+/* Essência V30 Safe — atualização visual sobre a base V27 estável.
+   Somente CSS: sem PWA, sem Service Worker e sem MutationObserver. */
+
+/* Botão E para voltar ao menu principal */
+#homeRailBtn{
+  background-image:none!important;
+  font-size:0!important;
+  display:grid!important;
+  place-items:center!important;
+}
+#homeRailBtn .v25-home-logo{display:none!important}
+#homeRailBtn::after{
+  content:'E';
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:-.04em;
+  background:linear-gradient(135deg,rgba(124,92,255,.96),rgba(67,139,255,.92));
+  box-shadow:0 8px 24px rgba(94,73,220,.22),inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+/* Canal de texto: nome + engrenagem formam uma peça única */
+#textChannels .v23-channel-row{
+  width:calc(100% - 20px);
+  min-height:42px;
+  margin:3px 10px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 38px;
+  align-items:stretch;
+  gap:0!important;
+  overflow:hidden;
+  border:1px solid transparent;
+  border-radius:12px;
+  background:transparent;
+  transition:background .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+#textChannels .v23-channel-row:hover,
+#textChannels .v23-channel-row:focus-within{
+  background:rgba(124,92,255,.075);
+  border-color:rgba(124,92,255,.20);
+  box-shadow:0 8px 24px rgba(0,0,0,.07);
+}
+#textChannels .v23-channel-row>.channel-item{
+  width:100%!important;
+  margin:0!important;
+  padding:10px 11px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#textChannels .v23-channel-row>.v23-channel-gear{
+  position:static!important;
+  inset:auto!important;
+  width:38px!important;
+  height:auto!important;
+  margin:0!important;
+  border:0!important;
+  border-left:1px solid transparent!important;
+  border-radius:0!important;
+  background:transparent!important;
+  opacity:0!important;
+  transform:translateX(4px);
+  transition:opacity .15s ease,transform .15s ease,background .15s ease,color .15s ease!important;
+}
+#textChannels .v23-channel-row:hover>.v23-channel-gear,
+#textChannels .v23-channel-row:focus-within>.v23-channel-gear{
+  opacity:1!important;
+  transform:none!important;
+  border-left-color:rgba(148,163,184,.14)!important;
+}
+
+/* Canal de voz: engrenagem fica na mesma linha do canal, participantes abaixo */
+#voiceChannels .voice-channel-wrap.v23-channel-host{
+  width:calc(100% - 20px)!important;
+  margin:3px 10px 6px!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 38px;
+  align-items:stretch;
+  overflow:hidden;
+  border:1px solid transparent;
+  border-radius:12px;
+  background:transparent;
+  transition:background .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host:hover,
+#voiceChannels .voice-channel-wrap.v23-channel-host:focus-within{
+  background:rgba(124,92,255,.075);
+  border-color:rgba(124,92,255,.20);
+  box-shadow:0 8px 24px rgba(0,0,0,.07);
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.channel-item{
+  grid-column:1;
+  grid-row:1;
+  width:100%!important;
+  margin:0!important;
+  padding:10px 11px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
+  grid-column:2;
+  grid-row:1;
+  position:static!important;
+  inset:auto!important;
+  width:38px!important;
+  min-width:38px!important;
+  height:auto!important;
+  min-height:40px!important;
+  margin:0!important;
+  border:0!important;
+  border-left:1px solid transparent!important;
+  border-radius:0!important;
+  background:transparent!important;
+  opacity:0!important;
+  transform:translateX(4px);
+  transition:opacity .15s ease,transform .15s ease,background .15s ease,color .15s ease!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host:hover>.v23-channel-gear,
+#voiceChannels .voice-channel-wrap.v23-channel-host:focus-within>.v23-channel-gear{
+  opacity:1!important;
+  transform:none!important;
+  border-left-color:rgba(148,163,184,.14)!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.voice-participants{
+  grid-column:1/-1;
+  grid-row:2;
+  padding:0 10px 7px 22px!important;
+}
+
+/* Canal selecionado fica limpo, sem bloco pesado */
+#textChannels .channel-item.active,
+#voiceChannels .channel-item.active{
+  background:transparent!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+}
+
+/* Light: branco/cinza translúcido em vez de branco chapado */
+html[data-essencia-theme="light"]{
+  --v25-bg:#e9edf3;
+  --v25-bg2:#f4f6f9;
+  --v25-glass:rgba(244,247,251,.54);
+  --v25-glass-strong:rgba(248,250,253,.70);
+  --v25-line:rgba(73,87,111,.16);
+  --v25-line-strong:rgba(98,82,216,.23);
+  --v25-text:#182235;
+  --v25-muted:#58667a;
+  --v25-soft:#768399;
+  --v25-shadow:0 16px 42px rgba(49,60,79,.08);
+  --v17-bg:#e9edf3;
+  --v17-rail:rgba(239,243,248,.60);
+  --v17-side:rgba(242,245,249,.56);
+  --v17-panel:rgba(247,249,252,.69);
+  --v17-card:rgba(244,247,250,.62);
+  --v17-card-2:rgba(228,233,240,.68);
+  --v17-input:rgba(248,250,252,.68);
+  --v17-line:rgba(73,87,111,.16);
+  --v17-text:#182235;
+  --v17-muted:#58667a;
+}
+html[data-essencia-theme="light"] body{
+  background:
+    radial-gradient(circle at 10% 5%,rgba(111,93,243,.10),transparent 29%),
+    radial-gradient(circle at 84% 8%,rgba(75,141,248,.075),transparent 27%),
+    radial-gradient(circle at 55% 92%,rgba(148,163,184,.13),transparent 33%),
+    linear-gradient(145deg,#eef1f6 0%,#e6ebf1 48%,#edf1f5 100%)!important;
+  color:#182235!important;
+}
+html[data-essencia-theme="light"] .server-rail{
+  background:rgba(239,243,248,.56)!important;
+  border-right-color:rgba(73,87,111,.16)!important;
+}
+html[data-essencia-theme="light"] .sidebar{
+  background:rgba(241,244,248,.52)!important;
+  border-right-color:rgba(73,87,111,.16)!important;
+}
+html[data-essencia-theme="light"] .topbar{
+  background:rgba(247,249,252,.58)!important;
+  border-bottom-color:rgba(73,87,111,.15)!important;
+}
+html[data-essencia-theme="light"] .members-panel{
+  background:rgba(241,244,248,.54)!important;
+  border-left-color:rgba(73,87,111,.16)!important;
+}
+html[data-essencia-theme="light"] .sidebar-bottom,
+html[data-essencia-theme="light"] .me-bar,
+html[data-essencia-theme="light"] .composer{
+  background:rgba(244,247,250,.62)!important;
+  border-color:rgba(73,87,111,.16)!important;
+}
+html[data-essencia-theme="light"] .content,
+html[data-essencia-theme="light"] .view,
+html[data-essencia-theme="light"] #chatView,
+html[data-essencia-theme="light"] .messages{
+  background:rgba(236,240,246,.20)!important;
+}
+html[data-essencia-theme="light"] input,
+html[data-essencia-theme="light"] textarea,
+html[data-essencia-theme="light"] .members-filter-wrap input,
+html[data-essencia-theme="light"] .v20-search-box,
+html[data-essencia-theme="light"] .v20-search-panel-input{
+  background:rgba(248,250,252,.60)!important;
+  color:#182235!important;
+  border-color:rgba(73,87,111,.17)!important;
+}
+html[data-essencia-theme="light"] input::placeholder,
+html[data-essencia-theme="light"] textarea::placeholder{
+  color:#7a8799!important;
+  opacity:1!important;
+}
+html[data-essencia-theme="light"] .section-title,
+html[data-essencia-theme="light"] .eyebrow,
+html[data-essencia-theme="light"] small,
+html[data-essencia-theme="light"] .voice-empty{
+  color:#657388!important;
+  opacity:1!important;
+}
+html[data-essencia-theme="light"] .nav-item,
+html[data-essencia-theme="light"] .dm-item,
+html[data-essencia-theme="light"] .channel-item{
+  color:#526075!important;
+  opacity:1!important;
+}
+html[data-essencia-theme="light"] .nav-item:hover,
+html[data-essencia-theme="light"] .dm-item:hover,
+html[data-essencia-theme="light"] .member-row:hover,
+html[data-essencia-theme="light"] .person-row:hover,
+html[data-essencia-theme="light"] #textChannels .v23-channel-row:hover,
+html[data-essencia-theme="light"] #voiceChannels .voice-channel-wrap.v23-channel-host:hover{
+  background:rgba(105,92,214,.075)!important;
+  border-color:rgba(105,92,214,.16)!important;
+  color:#202b42!important;
+}
+html[data-essencia-theme="light"] .v17-settings,
+html[data-essencia-theme="light"] .v21-admin,
+html[data-essencia-theme="light"] .v19-admin-modal,
+html[data-essencia-theme="light"] .v23-channel-modal,
+html[data-essencia-theme="light"] .v20-search-panel,
+html[data-essencia-theme="light"] .v17-profile-popover,
+html[data-essencia-theme="light"] .v21-self-pop,
+html[data-essencia-theme="light"] .emoji-popover,
+html[data-essencia-theme="light"] .stream-volume-context{
+  background:rgba(247,249,252,.72)!important;
+  color:#182235!important;
+  border-color:rgba(73,87,111,.16)!important;
+  box-shadow:0 18px 48px rgba(49,60,79,.10)!important;
+  backdrop-filter:blur(16px) saturate(112%)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(112%)!important;
+}
+
+@media(max-width:760px){
+  #textChannels .v23-channel-row,
+  #voiceChannels .voice-channel-wrap.v23-channel-host{
+    width:calc(100% - 16px)!important;
+    margin-left:8px!important;
+    margin-right:8px!important;
+  }
+  #textChannels .v23-channel-gear,
+  #voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
+    opacity:.72!important;
+    transform:none!important;
+  }
+}
