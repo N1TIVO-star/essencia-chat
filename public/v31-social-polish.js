@@ -42,38 +42,33 @@
     }
 
     document.querySelector('#v21MeStatusDot')?.classList.add('v31-hide-old-status');
+    bar.querySelector('#v31QuickStatusPicker')?.remove();
 
-    let picker = bar.querySelector('#v31QuickStatusPicker');
-    if (!picker) {
-      picker = document.createElement('div');
-      picker.id = 'v31QuickStatusPicker';
-      picker.className = 'v31-quick-status-picker';
-      picker.innerHTML = `
-        <button type="button" data-v31-status="online" title="Disponível" aria-label="Disponível"><span class="v31-status-dot online"></span></button>
-        <button type="button" data-v31-status="dnd" title="Não perturbar" aria-label="Não perturbar"><span class="v31-status-dot dnd"></span></button>
-        <button type="button" data-v31-status="invisible" title="Invisível" aria-label="Invisível"><span class="v31-status-dot invisible"></span></button>`;
-      avatar.insertAdjacentElement('afterend', picker);
-      picker.querySelectorAll('[data-v31-status]').forEach(button => {
-        button.onclick = async event => {
-          event.stopPropagation();
-          const status = button.dataset.v31Status;
-          try {
-            const data = await API('/api/status', { method:'POST', body:{ status } });
-            state.me = data.user;
-            try { updateMeUI(); } catch {}
-            syncMeBar();
-            toast(`Status: ${statusLabel(status)}.`);
-          } catch (error) {
-            toast(error.message || 'Não foi possível alterar o status.');
-          }
-        };
-      });
+    let activeDot = bar.querySelector('#v31ActiveStatusDot');
+    if (!activeDot) {
+      activeDot = document.createElement('button');
+      activeDot.id = 'v31ActiveStatusDot';
+      activeDot.type = 'button';
+      activeDot.className = 'v31-active-status-dot';
+      avatar.insertAdjacentElement('afterend', activeDot);
+      activeDot.onclick = event => {
+        event.stopPropagation();
+        try { avatar.click(); } catch {}
+      };
     }
 
     const current = state.me.status || 'online';
-    picker.querySelectorAll('[data-v31-status]').forEach(button => {
-      button.classList.toggle('active', button.dataset.v31Status === current);
-    });
+    activeDot.className = `v31-active-status-dot ${current}`;
+    activeDot.title = statusLabel(current);
+    activeDot.setAttribute('aria-label', statusLabel(current));
+  }
+
+  function cleanAccountButtons() {
+    const content = document.querySelector('#v17SettingsContent');
+    if (!content) return;
+    const title = content.querySelector('h2')?.textContent?.trim();
+    if (title !== 'Minha conta') return;
+    content.querySelector('.v17-profile-actions')?.remove();
   }
 
   function installMeBarHook() {
@@ -82,7 +77,10 @@
       if (!original || original.__v31SocialWrapped) return;
       const wrapped = function(...args) {
         const result = original.apply(this, args);
-        queueMicrotask(syncMeBar);
+        queueMicrotask(() => {
+          syncMeBar();
+          cleanAccountButtons();
+        });
         return result;
       };
       wrapped.__v31SocialWrapped = true;
@@ -111,9 +109,7 @@
   }
 
   document.addEventListener('change', event => {
-    if (event.target?.id === 'v21IconFile' || event.target?.id === 'v21BannerFile') {
-      applyServerPreview(event);
-    }
+    if (event.target?.id === 'v21IconFile' || event.target?.id === 'v21BannerFile') applyServerPreview(event);
   });
 
   document.addEventListener('input', event => {
@@ -140,7 +136,6 @@
     }
 
     closeInviteOverlay();
-
     const memberIds = new Set((state.serverMembers || []).map(member => member.id));
     const friends = (state.friends?.friends || []).filter(friend => !memberIds.has(friend.id));
 
@@ -151,17 +146,12 @@
         <button type="button" class="v31-invite-close" aria-label="Fechar">×</button>
         <h2>Convidar amigos para ${esc(state.currentServer.name || 'o servidor')}</h2>
         <p>O convite chega no privado. A pessoa só entra depois de aceitar.</p>
-        <div class="v31-invite-search-wrap">
-          <input id="v31InviteSearch" type="search" placeholder="Buscar amigos">
-        </div>
+        <div class="v31-invite-search-wrap"><input id="v31InviteSearch" type="search" placeholder="Buscar amigos"></div>
         <div id="v31InviteFriends" class="v31-invite-friends">
           ${friends.length ? friends.map(friend => `
             <div class="v31-invite-friend" data-search="${esc(`${friend.nick || ''} ${friend.username || ''}`.toLowerCase())}">
               <img src="${avatarUrl(friend)}" alt="">
-              <div class="v31-invite-friend-meta">
-                <strong>${esc(friend.nick || friend.username || 'Usuário')}</strong>
-                <small>${esc(friend.username || '')}</small>
-              </div>
+              <div class="v31-invite-friend-meta"><strong>${esc(friend.nick || friend.username || 'Usuário')}</strong><small>${esc(friend.username || '')}</small></div>
               <button type="button" data-v31-invite-user="${esc(friend.id)}">Convidar</button>
             </div>`).join('') : '<div class="v31-invite-empty">Todos os seus amigos já estão neste servidor.</div>'}
         </div>
@@ -169,16 +159,13 @@
       </section>`;
 
     document.body.appendChild(inviteOverlay);
-
     inviteOverlay.querySelector('.v31-invite-close').onclick = closeInviteOverlay;
     inviteOverlay.onclick = event => { if (event.target === inviteOverlay) closeInviteOverlay(); };
 
     const search = inviteOverlay.querySelector('#v31InviteSearch');
     search.oninput = () => {
       const term = search.value.trim().toLowerCase();
-      inviteOverlay.querySelectorAll('.v31-invite-friend').forEach(row => {
-        row.hidden = !!term && !row.dataset.search.includes(term);
-      });
+      inviteOverlay.querySelectorAll('.v31-invite-friend').forEach(row => { row.hidden = !!term && !row.dataset.search.includes(term); });
     };
 
     inviteOverlay.querySelectorAll('[data-v31-invite-user]').forEach(button => {
@@ -187,10 +174,7 @@
         button.disabled = true;
         button.textContent = 'Enviando…';
         try {
-          await API(`/api/servers/${state.currentServer.id}/invites`, {
-            method:'POST',
-            body:{ userIds:[userId] }
-          });
+          await API(`/api/servers/${state.currentServer.id}/invites`, { method:'POST', body:{ userIds:[userId] } });
           button.textContent = 'Enviado';
           button.classList.add('sent');
           toast('Convite enviado no privado.');
@@ -235,11 +219,14 @@
   function syncUI() {
     installMeBarHook();
     syncMeBar();
+    cleanAccountButtons();
     installInviteButton();
     polishInviteCards();
 
     const isolatedAdd = document.querySelector('#addFriendTopBtn');
     if (isolatedAdd) isolatedAdd.classList.add('v31-remove-isolated-add');
+
+    document.querySelector('#v30SafeInstallSidebar')?.classList.add('v31-hide-install-sidebar');
   }
 
   installMeBarHook();
