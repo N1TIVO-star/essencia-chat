@@ -1,0 +1,19 @@
+{
+  "name": "Essência Chat",
+  "short_name": "Essência",
+  "description": "Converse, crie comunidades, faça chamadas e compartilhe momentos no Essência.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a0d14",
+  "theme_color": "#745cff",
+  "icons": [
+    {
+      "src": "/essencia-icon.svg?v=30safe",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
