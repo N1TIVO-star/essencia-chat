@@ -8,7 +8,7 @@ module.exports = function applyV26SourcePatch(source) {
     return true;
   };
 
-  const ASSET_VERSION = '31safe2';
+  const ASSET_VERSION = '31safe3';
 
   // Tolera oscilações curtas de rede antes de considerar o Socket.IO perdido.
   replace(
@@ -22,23 +22,23 @@ module.exports = function applyV26SourcePatch(source) {
     'configuração Socket.IO'
   );
 
-  // Mantém a base estável e injeta apenas a camada V31 isolada.
+  // Mantém a base estável e injeta apenas camadas V31 isoladas.
   source = source.replace(
     '"/v25-final-ui.js"]',
-    `"/v25-final-ui.js?v=${ASSET_VERSION}", "/v26-stability.js?v=${ASSET_VERSION}", "/v30-safe-pwa.js?v=${ASSET_VERSION}", "/v31-ui-controls.js?v=${ASSET_VERSION}"]`
+    `"/v25-final-ui.js?v=${ASSET_VERSION}", "/v26-stability.js?v=${ASSET_VERSION}", "/v30-safe-pwa.js?v=${ASSET_VERSION}", "/v31-ui-controls.js?v=${ASSET_VERSION}", "/v31-voice-video-settings.js?v=${ASSET_VERSION}"]`
   );
   source = source.replace(
     '"/v24-admin-fix.js"]',
-    `"/v24-admin-fix.js?v=${ASSET_VERSION}", "/v26-stability.js?v=${ASSET_VERSION}", "/v30-safe-pwa.js?v=${ASSET_VERSION}", "/v31-ui-controls.js?v=${ASSET_VERSION}"]`
+    `"/v24-admin-fix.js?v=${ASSET_VERSION}", "/v26-stability.js?v=${ASSET_VERSION}", "/v30-safe-pwa.js?v=${ASSET_VERSION}", "/v31-ui-controls.js?v=${ASSET_VERSION}", "/v31-voice-video-settings.js?v=${ASSET_VERSION}"]`
   );
 
   source = source.replace(
     '"/v25-final-ui.css"]',
-    `"/v25-final-ui.css?v=${ASSET_VERSION}", "/v27-media.css?v=${ASSET_VERSION}", "/v30-safe.css?v=${ASSET_VERSION}", "/v30-safe-pwa.css?v=${ASSET_VERSION}", "/v31-ui-controls.css?v=${ASSET_VERSION}", "/v31-call-hotfix.css?v=${ASSET_VERSION}"]`
+    `"/v25-final-ui.css?v=${ASSET_VERSION}", "/v27-media.css?v=${ASSET_VERSION}", "/v30-safe.css?v=${ASSET_VERSION}", "/v30-safe-pwa.css?v=${ASSET_VERSION}", "/v31-ui-controls.css?v=${ASSET_VERSION}", "/v31-call-hotfix.css?v=${ASSET_VERSION}", "/v31-voice-video-settings.css?v=${ASSET_VERSION}"]`
   );
   source = source.replace(
     '"/v24-admin-fix.css"]',
-    `"/v24-admin-fix.css?v=${ASSET_VERSION}", "/v27-media.css?v=${ASSET_VERSION}", "/v30-safe.css?v=${ASSET_VERSION}", "/v30-safe-pwa.css?v=${ASSET_VERSION}", "/v31-ui-controls.css?v=${ASSET_VERSION}", "/v31-call-hotfix.css?v=${ASSET_VERSION}"]`
+    `"/v24-admin-fix.css?v=${ASSET_VERSION}", "/v27-media.css?v=${ASSET_VERSION}", "/v30-safe.css?v=${ASSET_VERSION}", "/v30-safe-pwa.css?v=${ASSET_VERSION}", "/v31-ui-controls.css?v=${ASSET_VERSION}", "/v31-call-hotfix.css?v=${ASSET_VERSION}", "/v31-voice-video-settings.css?v=${ASSET_VERSION}"]`
   );
 
   // Favicon + manifesto + quebra de cache dos arquivos-base do HTML.
