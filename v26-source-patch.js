@@ -20,20 +20,20 @@ module.exports = function applyV26SourcePatch(source) {
     'configuração Socket.IO'
   );
 
-  // Carrega a camada cliente V26 por último.
+  // Mantém a camada funcional estável V26/V27.
   source = source.replace('"/v25-final-ui.js"]', '"/v25-final-ui.js", "/v26-stability.js"]');
   source = source.replace('"/v24-admin-fix.js"]', '"/v24-admin-fix.js", "/v26-stability.js"]');
 
-  // V27: amplia transmissão e mostra imagens de grupos completas.
-  source = source.replace('"/v25-final-ui.css"]', '"/v25-final-ui.css", "/v27-media.css"]');
-  source = source.replace('"/v24-admin-fix.css"]', '"/v24-admin-fix.css", "/v27-media.css"]');
+  // V27: mídia ampliada + V30 Safe: somente CSS visual, sem PWA e sem JS extra.
+  source = source.replace('"/v25-final-ui.css"]', '"/v25-final-ui.css", "/v27-media.css", "/v30-safe.css"]');
+  source = source.replace('"/v24-admin-fix.css"]', '"/v24-admin-fix.css", "/v27-media.css", "/v30-safe.css"]');
 
   // Favicon real no HTML servido em runtime, com versão para quebrar cache antigo.
   replace(
     'let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");',
     `let html = fs.readFileSync(path.join(__dirname, "public", "index.html"), "utf8");
-    if (!html.includes('essencia-icon.svg?v=27')) {
-      html = html.replace('</head>', '  <link rel="icon" type="image/svg+xml" href="/essencia-icon.svg?v=27" />\\n  <link rel="shortcut icon" href="/essencia-icon.svg?v=27" />\\n  <link rel="apple-touch-icon" href="/essencia-icon.svg?v=27" />\\n</head>');
+    if (!html.includes('essencia-icon.svg?v=30safe')) {
+      html = html.replace('</head>', '  <link rel="icon" type="image/svg+xml" href="/essencia-icon.svg?v=30safe" />\\n  <link rel="shortcut icon" href="/essencia-icon.svg?v=30safe" />\\n  <link rel="apple-touch-icon" href="/essencia-icon.svg?v=30safe" />\\n</head>');
     }`,
     'favicon runtime'
   );
