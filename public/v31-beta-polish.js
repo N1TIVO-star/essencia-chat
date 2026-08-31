@@ -1,24 +1,53 @@
 (() => {
   'use strict';
 
+  const statusLabel = status => {
+    if (status === 'dnd') return 'Não perturbar';
+    if (status === 'invisible') return 'Invisível';
+    return 'Disponível';
+  };
+
   function stabilizeMeBar() {
     const bar = document.querySelector('.me-bar');
     const avatar = document.querySelector('#meAvatar');
-    const dot = document.querySelector('#v21MeStatusDot');
-    if (!bar || !avatar || !dot) return;
+    const meta = bar?.querySelector('.me-meta');
+    if (!bar || !avatar || !state.me) return;
 
     bar.classList.add('v31-me-status-bar');
 
-    // Usa apenas o indicador oficial do status atual.
+    // Esconde indicadores antigos/duplicados para nunca aparecerem no meio da barra.
+    document.querySelector('#v21MeStatusDot')?.classList.add('v31-beta-hidden-status');
     document.querySelector('#v31ActiveStatusDot')?.classList.add('v31-beta-hidden-status');
     document.querySelector('#v31QuickStatusPicker')?.classList.add('v31-beta-hidden-status');
 
-    dot.classList.remove('v31-hide-old-status');
-    dot.classList.add('v31-beta-avatar-status');
+    let wrap = avatar.parentElement?.classList?.contains('v31-avatar-status-wrap')
+      ? avatar.parentElement
+      : null;
 
-    // Move somente quando necessário para evitar re-render e trabalho repetido.
-    if (dot.previousElementSibling !== avatar) {
-      avatar.insertAdjacentElement('afterend', dot);
+    if (!wrap) {
+      wrap = document.createElement('span');
+      wrap.className = 'v31-avatar-status-wrap';
+      avatar.parentNode.insertBefore(wrap, avatar);
+      wrap.appendChild(avatar);
+    }
+
+    let dot = wrap.querySelector('#v31PinnedStatusDot');
+    if (!dot) {
+      dot = document.createElement('span');
+      dot.id = 'v31PinnedStatusDot';
+      wrap.appendChild(dot);
+    }
+
+    const current = state.me.status || 'online';
+    dot.className = `v31-pinned-status-dot ${current}`;
+    dot.title = statusLabel(current);
+
+    const strong = meta?.querySelector('strong');
+    const small = meta?.querySelector('small');
+    if (strong) strong.textContent = state.me.nick || state.me.username || 'Usuário';
+    if (small) {
+      small.textContent = statusLabel(current);
+      small.classList.add('v31-current-status-text');
     }
   }
 
@@ -41,10 +70,6 @@
   }
 
   sync();
-
-  // Sem MutationObserver: ele estava reagindo às próprias mudanças de classe e
-  // criando um ciclo contínuo que congelava a interface. Este fallback é leve.
-  const timer = setInterval(sync, 800);
-
+  const timer = setInterval(sync, 900);
   window.addEventListener('beforeunload', () => clearInterval(timer), { once:true });
 })();
