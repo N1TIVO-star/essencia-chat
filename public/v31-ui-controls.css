@@ -1,0 +1,195 @@
+/* Essência V31 Safe — melhorias isoladas sobre a base estável. */
+
+/* GIF removido: fica somente o botão de emoji no composer. */
+#gifBtn,
+#gifInput,
+#v17GifPicker{
+  display:none!important;
+}
+
+/* Modo Light moderno: branco/cinza translúcido com profundidade suave. */
+html[data-essencia-theme="light"]{
+  --v31-bg:#e9edf3;
+  --v31-panel:rgba(247,249,252,.66);
+  --v31-panel-strong:rgba(250,251,253,.78);
+  --v31-line:rgba(73,87,111,.15);
+  --v31-text:#182235;
+  --v31-muted:#617087;
+}
+html[data-essencia-theme="light"] body{
+  background:
+    radial-gradient(circle at 8% 4%,rgba(111,93,243,.11),transparent 30%),
+    radial-gradient(circle at 88% 8%,rgba(75,141,248,.09),transparent 28%),
+    radial-gradient(circle at 55% 96%,rgba(148,163,184,.14),transparent 34%),
+    linear-gradient(145deg,#f0f3f7 0%,#e7ebf1 50%,#edf1f5 100%)!important;
+  color:var(--v31-text)!important;
+}
+html[data-essencia-theme="light"] .server-rail,
+html[data-essencia-theme="light"] .sidebar,
+html[data-essencia-theme="light"] .topbar,
+html[data-essencia-theme="light"] .members-panel,
+html[data-essencia-theme="light"] .sidebar-bottom,
+html[data-essencia-theme="light"] .me-bar,
+html[data-essencia-theme="light"] .composer,
+html[data-essencia-theme="light"] .v17-settings,
+html[data-essencia-theme="light"] .v21-admin,
+html[data-essencia-theme="light"] .v19-admin-modal,
+html[data-essencia-theme="light"] .v23-channel-modal,
+html[data-essencia-theme="light"] .v17-profile-popover,
+html[data-essencia-theme="light"] .v21-self-pop,
+html[data-essencia-theme="light"] .emoji-popover{
+  background:var(--v31-panel)!important;
+  border-color:var(--v31-line)!important;
+  backdrop-filter:blur(20px) saturate(118%)!important;
+  -webkit-backdrop-filter:blur(20px) saturate(118%)!important;
+  box-shadow:0 16px 42px rgba(49,60,79,.08)!important;
+}
+html[data-essencia-theme="light"] .content,
+html[data-essencia-theme="light"] .view,
+html[data-essencia-theme="light"] #chatView,
+html[data-essencia-theme="light"] .messages{
+  background:rgba(236,240,246,.20)!important;
+}
+html[data-essencia-theme="light"] input,
+html[data-essencia-theme="light"] textarea,
+html[data-essencia-theme="light"] select,
+html[data-essencia-theme="light"] .v31-device-card{
+  background:rgba(250,251,253,.70)!important;
+  color:var(--v31-text)!important;
+  border-color:rgba(73,87,111,.17)!important;
+}
+html[data-essencia-theme="light"] .section-title,
+html[data-essencia-theme="light"] .eyebrow,
+html[data-essencia-theme="light"] small{
+  color:var(--v31-muted)!important;
+  opacity:1!important;
+}
+
+/* Call: mantém palco e controles dentro da viewport também no PV. */
+#voiceView{
+  min-height:0!important;
+  overflow:hidden!important;
+}
+#voiceView .voice-stage{
+  height:100%!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  padding-bottom:0!important;
+}
+#voiceView .voice-top{
+  flex:0 0 auto!important;
+}
+#voiceView .video-grid{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow:auto!important;
+  align-content:stretch!important;
+}
+#voiceView .voice-controls{
+  flex:0 0 auto!important;
+  position:relative!important;
+  z-index:5!important;
+  padding:12px 12px 16px!important;
+  margin-top:4px!important;
+  background:linear-gradient(180deg,transparent,rgba(7,9,22,.88) 34%,rgba(7,9,22,.97))!important;
+}
+#voiceView .video-grid:has(.video-tile.local-sharing),
+#voiceView .video-grid:has(.video-tile.remote-sharing){
+  min-height:0!important;
+  padding:8px 0!important;
+}
+#voiceView .video-grid:has(.video-tile.local-sharing) .video-tile.local-sharing,
+#voiceView .video-grid:has(.video-tile.remote-sharing) .video-tile.remote-sharing{
+  min-height:0!important;
+  height:min(100%,calc(100dvh - 245px))!important;
+  max-height:calc(100dvh - 245px)!important;
+}
+#voiceView.v31-dm-call .video-grid{
+  width:100%!important;
+}
+#voiceView.v31-dm-call .video-tile{
+  max-width:none!important;
+}
+
+/* Transmissão mais limpa e sem cortar a imagem. */
+#voiceView .video-tile.local-sharing video,
+#voiceView .video-tile.remote-sharing video,
+#streamOverlayVideo{
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#000!important;
+}
+#voiceView .local-share-note{
+  background:rgba(7,9,22,.68)!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:8px!important;
+  padding:5px 8px!important;
+}
+
+/* Linha vermelha visual para microfone/áudio mutados. */
+#globalMuteBtn,
+#v21DeafenBtn,
+#micBtn{
+  position:relative!important;
+}
+#globalMuteBtn.v31-muted::after,
+#v21DeafenBtn.active::after,
+#micBtn.v31-muted::after,
+#micBtn.off::after{
+  content:"";
+  position:absolute;
+  width:24px;
+  height:3px;
+  left:50%;
+  top:50%;
+  border-radius:999px;
+  background:#f05261;
+  box-shadow:0 0 0 1px rgba(15,18,30,.35);
+  transform:translate(-50%,-50%) rotate(-45deg);
+  pointer-events:none;
+  z-index:4;
+}
+#globalMuteBtn.v31-muted,
+#v21DeafenBtn.active{
+  color:#f6a2ac!important;
+}
+
+/* Configurações de dispositivos. */
+.v31-device-settings h2{margin:0 0 6px}
+.v31-device-settings>p{margin:0 0 18px;color:var(--v17-muted,#8994a8)}
+.v31-device-grid{display:grid;gap:12px;max-width:680px}
+.v31-device-card{
+  border:1px solid rgba(148,163,184,.16);
+  border-radius:14px;
+  padding:14px;
+  background:rgba(18,22,39,.66);
+}
+.v31-device-card label{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;margin-bottom:8px;color:var(--v17-muted,#8994a8)}
+.v31-device-card select{
+  width:100%;
+  min-height:42px;
+  border:1px solid rgba(148,163,184,.18);
+  border-radius:10px;
+  padding:0 11px;
+  background:#101527;
+  color:#fff;
+}
+.v31-device-note{display:block;margin-top:8px;color:var(--v17-muted,#8994a8);font-size:11px;line-height:1.45}
+.v31-device-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.v31-device-actions button{min-height:38px;border-radius:10px;padding:0 14px}
+
+/* Menus de configuração sem emoji: o JS troca os rótulos por texto puro. */
+.v17-settings-nav button,
+.v21-admin-nav button,
+.v19-admin-nav button{gap:0!important}
+
+@media(max-width:760px){
+  #voiceView .voice-controls{padding:10px 6px 12px!important}
+  #voiceView .video-grid:has(.video-tile.local-sharing) .video-tile.local-sharing,
+  #voiceView .video-grid:has(.video-tile.remote-sharing) .video-tile.remote-sharing{
+    height:auto!important;
+    max-height:58dvh!important;
+  }
+}
