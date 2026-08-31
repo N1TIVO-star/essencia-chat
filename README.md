@@ -23,6 +23,14 @@ O Essência Chat está atualmente em **Beta**, ainda antes da versão 1.0.
 - Aplicativo instalável/PWA em modo seguro.
 - PostgreSQL Neon como persistência principal, com cache local.
 
+## Organização atual
+
+A entrada oficial do projeto é agora:
+
+`essencia-chat-beta.js`
+
+Os módulos internos ainda necessários ficam em `runtime/`. Arquivos históricos de atualização e wrappers antigos foram removidos da raiz para manter o repositório limpo sem alterar o comportamento da versão estável.
+
 ## Versão
 
 `0.9.0-beta.1`

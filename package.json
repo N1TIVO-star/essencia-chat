@@ -3,10 +3,10 @@
   "version": "0.9.0-beta.1",
   "private": true,
   "description": "Essência Chat Beta - versão pré-1.0 em desenvolvimento ativo.",
-  "main": "v26-server.js",
+  "main": "essencia-chat-beta.js",
   "scripts": {
-    "start": "node v26-server.js",
-    "dev": "node v26-server.js"
+    "start": "node essencia-chat-beta.js",
+    "dev": "node essencia-chat-beta.js"
   },
   "engines": {
     "node": ">=18"
