@@ -1,0 +1,147 @@
+/* Essência Beta — acabamento estável do perfil, Minha Conta e modo Light. */
+
+/* Perfil inferior: somente o status REAL atual, preso ao avatar. */
+.me-bar.v31-me-status-bar{
+  display:grid!important;
+  grid-template-columns:auto minmax(0,1fr) auto auto auto!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+.me-bar.v31-me-status-bar #meAvatar{
+  position:relative!important;
+  overflow:visible!important;
+}
+.me-bar.v31-me-status-bar #v21MeStatusDot{
+  display:block!important;
+  position:absolute!important;
+  right:-1px!important;
+  bottom:-1px!important;
+  width:10px!important;
+  height:10px!important;
+  min-width:10px!important;
+  border-radius:50%!important;
+  border:2px solid var(--v17-side,#0d1121)!important;
+  box-sizing:content-box!important;
+  z-index:5!important;
+  margin:0!important;
+  pointer-events:none!important;
+}
+.me-bar.v31-me-status-bar #v21MeStatusDot.online{background:#2fd18b!important}
+.me-bar.v31-me-status-bar #v21MeStatusDot.dnd{background:#f05261!important}
+.me-bar.v31-me-status-bar #v21MeStatusDot.invisible{background:#667085!important}
+.me-bar.v31-me-status-bar .v31-single-current-status,
+.me-bar.v31-me-status-bar #v31QuickStatusPicker{
+  display:none!important;
+}
+.me-bar.v31-me-status-bar .me-meta small.v31-current-status-text{
+  display:block!important;
+  margin-top:1px!important;
+  color:var(--v17-muted,#8994a8)!important;
+  font-size:10px!important;
+  white-space:nowrap!important;
+}
+
+/* Minha Conta: os atalhos duplicados nunca aparecem, nem durante re-render. */
+#v17SettingsContent .v17-account-card .v17-account-actions,
+#v17SettingsContent .v17-account-card [data-go="profile"],
+#v17SettingsContent .v17-account-card [data-go="appearance"],
+#v17SettingsContent .v17-account-card button[data-tab="profile"],
+#v17SettingsContent .v17-account-card button[data-tab="appearance"],
+#v17SettingsContent .v17-account-card button:nth-last-child(-n+2){
+  display:none!important;
+}
+
+/* Light: vidro branco/cinza translúcido inspirado na referência, mas legível. */
+html[data-essencia-theme="light"]{
+  --v17-bg:rgba(225,232,236,.62);
+  --v17-rail:rgba(232,239,241,.56);
+  --v17-side:rgba(237,242,243,.52);
+  --v17-panel:rgba(239,244,244,.58);
+  --v17-card:rgba(245,248,248,.44);
+  --v17-card-2:rgba(226,233,234,.48);
+  --v17-input:rgba(249,251,251,.48);
+  --v17-line:rgba(54,73,79,.17);
+  --v17-text:#1b2528;
+  --v17-muted:#5e6d72;
+  --v25-bg:rgba(225,232,236,.62);
+  --v25-bg2:rgba(238,243,244,.58);
+  --v25-glass:rgba(239,244,244,.46);
+  --v25-glass-strong:rgba(247,250,250,.58);
+  --v25-line:rgba(54,73,79,.17);
+  --v25-line-strong:rgba(73,101,108,.26);
+  --v25-text:#1b2528;
+  --v25-muted:#5e6d72;
+  --v25-soft:#748187;
+  --v25-shadow:0 16px 42px rgba(36,54,59,.11);
+}
+html[data-essencia-theme="light"] body{
+  background:
+    radial-gradient(circle at 12% 8%,rgba(255,255,255,.48),transparent 29%),
+    radial-gradient(circle at 84% 12%,rgba(190,213,216,.34),transparent 28%),
+    linear-gradient(145deg,#d8e1e3 0%,#cfdadd 48%,#dce5e6 100%)!important;
+  color:#1b2528!important;
+}
+html[data-essencia-theme="light"] .server-rail,
+html[data-essencia-theme="light"] .sidebar,
+html[data-essencia-theme="light"] .topbar,
+html[data-essencia-theme="light"] .members-panel,
+html[data-essencia-theme="light"] .sidebar-bottom,
+html[data-essencia-theme="light"] .me-bar,
+html[data-essencia-theme="light"] .composer,
+html[data-essencia-theme="light"] .v17-settings,
+html[data-essencia-theme="light"] .v21-admin,
+html[data-essencia-theme="light"] .v19-admin-modal,
+html[data-essencia-theme="light"] .v23-channel-modal,
+html[data-essencia-theme="light"] .v20-search-panel,
+html[data-essencia-theme="light"] .v17-profile-popover,
+html[data-essencia-theme="light"] .v21-self-pop,
+html[data-essencia-theme="light"] .emoji-popover,
+html[data-essencia-theme="light"] .v31-invite-dialog,
+html[data-essencia-theme="light"] .v31-share-card{
+  background:rgba(232,239,240,.52)!important;
+  border-color:rgba(54,73,79,.17)!important;
+  box-shadow:0 16px 44px rgba(35,52,57,.11)!important;
+  backdrop-filter:blur(24px) saturate(116%)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(116%)!important;
+}
+html[data-essencia-theme="light"] .content,
+html[data-essencia-theme="light"] .view,
+html[data-essencia-theme="light"] #chatView,
+html[data-essencia-theme="light"] .messages{
+  background:rgba(228,235,237,.20)!important;
+}
+html[data-essencia-theme="light"] input,
+html[data-essencia-theme="light"] textarea,
+html[data-essencia-theme="light"] select,
+html[data-essencia-theme="light"] .v31vv-device-card,
+html[data-essencia-theme="light"] #v31InviteSearch{
+  background:rgba(248,250,250,.50)!important;
+  border-color:rgba(54,73,79,.17)!important;
+  color:#1b2528!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+}
+html[data-essencia-theme="light"] .person-row,
+html[data-essencia-theme="light"] .member-row,
+html[data-essencia-theme="light"] .v31-invite-friend,
+html[data-essencia-theme="light"] .v31vv-section,
+html[data-essencia-theme="light"] .v31vv-test-card,
+html[data-essencia-theme="light"] .v31vv-camera-card{
+  background:rgba(241,246,246,.28)!important;
+  border-color:rgba(54,73,79,.13)!important;
+}
+html[data-essencia-theme="light"] .nav-item:hover,
+html[data-essencia-theme="light"] .dm-item:hover,
+html[data-essencia-theme="light"] .member-row:hover,
+html[data-essencia-theme="light"] .person-row:hover,
+html[data-essencia-theme="light"] .v31-invite-friend:hover{
+  background:rgba(255,255,255,.30)!important;
+}
+html[data-essencia-theme="light"] .section-title,
+html[data-essencia-theme="light"] .eyebrow,
+html[data-essencia-theme="light"] small,
+html[data-essencia-theme="light"] .me-meta small,
+html[data-essencia-theme="light"] .person-meta small{
+  color:#607177!important;
+  opacity:1!important;
+}
