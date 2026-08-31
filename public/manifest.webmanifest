@@ -1,19 +1,29 @@
 {
-  "name": "Essência Chat",
+  "name": "Essência",
   "short_name": "Essência",
-  "description": "Converse, crie comunidades, faça chamadas e compartilhe momentos no Essência.",
+  "description": "Essência — voz, conexão e comunidade.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "orientation": "any",
-  "background_color": "#0a0d14",
+  "background_color": "#070916",
   "theme_color": "#745cff",
+  "lang": "pt-BR",
+  "categories": ["social", "communication"],
   "icons": [
     {
-      "src": "/essencia-icon.svg?v=30safe",
+      "src": "/essencia-icon.svg?v=29",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any"
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Abrir Essência",
+      "short_name": "Abrir",
+      "url": "/"
     }
   ]
 }
