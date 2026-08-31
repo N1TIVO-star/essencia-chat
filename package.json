@@ -1,8 +1,8 @@
 {
   "name": "essencia-chat",
-  "version": "2.7.0",
+  "version": "0.9.0-beta.1",
   "private": true,
-  "description": "Essência Chat V27 - logo inicial corrigida, transmissão ampliada e imagens de grupos completas.",
+  "description": "Essência Chat Beta - versão pré-1.0 em desenvolvimento ativo.",
   "main": "v26-server.js",
   "scripts": {
     "start": "node v26-server.js",
