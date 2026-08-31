@@ -1,0 +1,87 @@
+/* Essência V31 — Etapa 3: painel de transmissão */
+.v31-share-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:10050;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:rgba(3,6,14,.72);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.v31-share-card{
+  position:relative;
+  width:min(620px,calc(100vw - 30px));
+  max-height:calc(100dvh - 36px);
+  overflow:auto;
+  border:1px solid rgba(134,118,255,.24);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(24,28,48,.98),rgba(14,18,34,.98));
+  box-shadow:0 28px 90px rgba(0,0,0,.48);
+  padding:22px;
+  color:#f5f7fb;
+}
+.v31-share-close{
+  position:absolute;
+  right:14px;
+  top:14px;
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:10px;
+  background:rgba(255,255,255,.07);
+  color:#d8deea;
+  font-size:22px;
+  cursor:pointer;
+}
+.v31-share-hero{display:flex;gap:14px;align-items:center;padding-right:42px}
+.v31-share-hero-icon{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#7158ff,#3ca7ff);font-size:24px;box-shadow:0 10px 28px rgba(81,86,255,.28)}
+.v31-share-hero h2{margin:0 0 5px;font-size:24px}
+.v31-share-hero p{margin:0;color:#9ea9bd;font-size:13px;line-height:1.45}
+.v31-share-section{margin-top:20px}
+.v31-share-label{display:block;margin-bottom:9px;font-size:10px;font-weight:900;letter-spacing:.12em;color:#8692a8}
+.v31-share-presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.v31-share-presets button{
+  min-height:78px;
+  text-align:left;
+  border:1px solid rgba(148,163,184,.16);
+  border-radius:13px;
+  padding:12px;
+  background:rgba(255,255,255,.045);
+  color:#f4f7fb;
+  cursor:pointer;
+  transition:.15s ease;
+}
+.v31-share-presets button:hover{background:rgba(124,92,255,.09);border-color:rgba(124,92,255,.28)}
+.v31-share-presets button.active{background:linear-gradient(145deg,rgba(116,92,255,.24),rgba(61,154,255,.12));border-color:#7a63ff;box-shadow:0 0 0 1px rgba(122,99,255,.22) inset}
+.v31-share-presets strong,.v31-share-presets small{display:block}
+.v31-share-presets strong{font-size:13px;margin-bottom:5px}
+.v31-share-presets small{color:#9ea9bd;font-size:11px;line-height:1.35}
+.v31-share-custom.hidden{display:none!important}
+.v31-share-custom-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.v31-share-custom label span{display:block;font-size:10px;font-weight:900;letter-spacing:.1em;color:#8692a8;margin-bottom:7px}
+.v31-share-custom select{width:100%;height:42px;border:1px solid rgba(148,163,184,.18);border-radius:10px;background:#0f1426;color:#fff;padding:0 10px}
+.v31-share-audio-note{margin-top:18px;display:flex;align-items:center;gap:11px;padding:12px 13px;border:1px solid rgba(148,163,184,.12);border-radius:12px;background:rgba(255,255,255,.035)}
+.v31-share-audio-note>span{font-size:20px}
+.v31-share-audio-note strong,.v31-share-audio-note small{display:block}
+.v31-share-audio-note strong{font-size:12px;margin-bottom:3px}
+.v31-share-audio-note small{font-size:10px;line-height:1.45;color:#98a4b9}
+.v31-share-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}
+.v31-share-actions button{min-height:40px;border-radius:10px;padding:0 15px}
+
+html[data-essencia-theme="light"] .v31-share-backdrop{background:rgba(70,80,100,.26)}
+html[data-essencia-theme="light"] .v31-share-card{background:rgba(250,251,253,.94);color:#182235;border-color:rgba(105,92,214,.22);box-shadow:0 24px 70px rgba(49,60,79,.16)}
+html[data-essencia-theme="light"] .v31-share-close{background:rgba(73,87,111,.07);color:#49586d}
+html[data-essencia-theme="light"] .v31-share-presets button{background:rgba(237,241,247,.72);color:#182235;border-color:rgba(73,87,111,.15)}
+html[data-essencia-theme="light"] .v31-share-presets button.active{background:linear-gradient(145deg,rgba(116,92,255,.13),rgba(61,154,255,.09));border-color:#7660e8}
+html[data-essencia-theme="light"] .v31-share-custom select{background:rgba(244,247,250,.92);color:#182235;border-color:rgba(73,87,111,.16)}
+html[data-essencia-theme="light"] .v31-share-audio-note{background:rgba(235,240,246,.64);border-color:rgba(73,87,111,.12)}
+
+@media(max-width:680px){
+  .v31-share-card{padding:18px 14px}
+  .v31-share-presets{grid-template-columns:1fr}
+  .v31-share-custom-grid{grid-template-columns:1fr}
+  .v31-share-actions{flex-direction:column-reverse}
+  .v31-share-actions button{width:100%}
+}
