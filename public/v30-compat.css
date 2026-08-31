@@ -1,0 +1,98 @@
+/* Essência V30.1 Safe — compatibilidade da UI antiga com a base estável V27. */
+
+/* Mantém o botão E mesmo sem o JS instável da V30. */
+#homeRailBtn{
+  background-image:none!important;
+  font-size:0!important;
+  display:grid!important;
+  place-items:center!important;
+}
+#homeRailBtn .v25-home-logo{display:none!important}
+#homeRailBtn::after{
+  content:'E';
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:-.04em;
+  background:linear-gradient(135deg,rgba(124,92,255,.92),rgba(67,139,255,.88));
+  box-shadow:0 8px 24px rgba(94,73,220,.22),inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+/* A V30 usava .v30-channel-main criado por JS. Aqui reproduzimos o mesmo layout só com CSS. */
+#voiceChannels .voice-channel-wrap.v23-channel-host{
+  width:calc(100% - 20px)!important;
+  margin:3px 10px 6px!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 38px;
+  align-items:stretch;
+  overflow:hidden;
+  border:1px solid transparent;
+  border-radius:12px;
+  background:transparent;
+  transition:background .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host:hover,
+#voiceChannels .voice-channel-wrap.v23-channel-host:focus-within{
+  background:rgba(124,92,255,.075);
+  border-color:rgba(124,92,255,.20);
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.channel-item{
+  grid-column:1;
+  grid-row:1;
+  width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:10px 11px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
+  grid-column:2;
+  grid-row:1;
+  position:static!important;
+  inset:auto!important;
+  width:38px!important;
+  min-width:38px!important;
+  min-height:40px!important;
+  height:auto!important;
+  margin:0!important;
+  border:0!important;
+  border-left:1px solid transparent!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--v25-muted,#96a0b5)!important;
+  opacity:0!important;
+  transform:translateX(4px);
+  transition:opacity .15s ease,transform .15s ease,background .15s ease,color .15s ease!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host:hover>.v23-channel-gear,
+#voiceChannels .voice-channel-wrap.v23-channel-host:focus-within>.v23-channel-gear{
+  opacity:1!important;
+  transform:none!important;
+  border-left-color:rgba(148,163,184,.12)!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.voice-participants{
+  grid-column:1/-1;
+  grid-row:2;
+  padding:0 10px 7px 22px!important;
+}
+
+@media(max-width:760px){
+  #voiceChannels .voice-channel-wrap.v23-channel-host{
+    width:calc(100% - 16px)!important;
+    margin:3px 8px 6px!important;
+  }
+  #voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
+    opacity:.72!important;
+    transform:none!important;
+  }
+}

@@ -1,0 +1,218 @@
+/* Essência V3.0 — canais mais clean + light transparente */
+
+/* Botão principal com E */
+.rail-logo.v30-home-e{
+  background-image:none!important;
+  font-size:0!important;
+  display:grid!important;
+  place-items:center!important;
+}
+.rail-logo.v30-home-e .v30-home-e-letter{
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:-.04em;
+  background:linear-gradient(135deg,rgba(124,92,255,.92),rgba(67,139,255,.88));
+  box-shadow:0 8px 24px rgba(94,73,220,.22),inset 0 1px 0 rgba(255,255,255,.18);
+}
+.rail-logo.v30-home-e:hover .v30-home-e-letter{
+  transform:translateY(-1px);
+  box-shadow:0 10px 28px rgba(94,73,220,.30),inset 0 1px 0 rgba(255,255,255,.20);
+}
+.rail-logo.v30-home-e .v30-brand-sentinel{display:none!important}
+
+/* Canal selecionado não fica com bloco permanente */
+#textChannels .channel-item.active,
+#voiceChannels .channel-item.active{
+  background:transparent!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+  color:inherit!important;
+}
+#textChannels .channel-item.active span,
+#voiceChannels .channel-item.active span{
+  color:inherit!important;
+}
+
+/* Canal + engrenagem como uma única peça */
+#textChannels .v23-channel-row,
+#voiceChannels .v30-channel-main{
+  width:calc(100% - 20px);
+  min-height:42px;
+  margin:3px 10px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 38px;
+  align-items:stretch;
+  gap:0!important;
+  overflow:hidden;
+  border:1px solid transparent;
+  border-radius:12px;
+  background:transparent;
+  box-shadow:none;
+  transition:background .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease;
+}
+#textChannels .v23-channel-row:hover,
+#voiceChannels .v30-channel-main:hover,
+#textChannels .v23-channel-row:focus-within,
+#voiceChannels .v30-channel-main:focus-within{
+  background:rgba(124,92,255,.075);
+  border-color:rgba(124,92,255,.20);
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+#textChannels .v23-channel-row>.channel-item,
+#voiceChannels .v30-channel-main>.channel-item{
+  width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:10px 11px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#textChannels .v23-channel-row>.channel-item:hover,
+#voiceChannels .v30-channel-main>.channel-item:hover{
+  background:transparent!important;
+  border-color:transparent!important;
+}
+#textChannels .v23-channel-gear,
+#voiceChannels .v30-channel-main>.v23-channel-gear{
+  position:static!important;
+  inset:auto!important;
+  width:38px!important;
+  min-width:38px!important;
+  height:auto!important;
+  min-height:40px!important;
+  align-self:stretch!important;
+  margin:0!important;
+  border-radius:0!important;
+  border:0!important;
+  border-left:1px solid transparent!important;
+  background:transparent!important;
+  color:var(--v25-muted,#96a0b5)!important;
+  opacity:0!important;
+  transform:translateX(4px);
+  transition:opacity .15s ease,transform .15s ease,background .15s ease,color .15s ease,border-color .15s ease!important;
+}
+#textChannels .v23-channel-row:hover>.v23-channel-gear,
+#textChannels .v23-channel-row:focus-within>.v23-channel-gear,
+#voiceChannels .v30-channel-main:hover>.v23-channel-gear,
+#voiceChannels .v30-channel-main:focus-within>.v23-channel-gear{
+  opacity:1!important;
+  transform:none!important;
+  border-left-color:rgba(148,163,184,.12)!important;
+}
+#textChannels .v23-channel-gear:hover,
+#voiceChannels .v30-channel-main>.v23-channel-gear:hover{
+  background:rgba(124,92,255,.12)!important;
+  color:var(--v25-text,#fff)!important;
+}
+
+/* Voice: participantes ficam fora da peça principal */
+#voiceChannels .voice-channel-wrap.v23-channel-host{
+  padding-right:0!important;
+  margin-bottom:5px!important;
+}
+#voiceChannels .voice-channel-wrap.v23-channel-host>.channel-item,
+#voiceChannels .voice-channel-wrap.v23-channel-host>.v23-channel-gear{
+  position:static!important;
+}
+#voiceChannels .voice-participants{
+  padding:0 10px 2px 22px!important;
+}
+
+/* Light 3.0: branco/cinza, translúcido, sem blocos pretos */
+html[data-essencia-theme="light"]{
+  --v25-bg:#eef2f7;
+  --v25-bg2:#f8fafc;
+  --v25-glass:rgba(255,255,255,.54);
+  --v25-glass-strong:rgba(255,255,255,.72);
+  --v25-line:rgba(100,116,139,.14);
+  --v25-line-strong:rgba(99,102,241,.20);
+  --v25-text:#172033;
+  --v25-muted:#667085;
+  --v25-soft:#8a94a6;
+  --v25-shadow:0 16px 42px rgba(30,41,59,.08);
+  --v25-blur:blur(22px) saturate(116%);
+  --v17-bg:#eef2f7;
+  --v17-rail:rgba(255,255,255,.62);
+  --v17-side:rgba(255,255,255,.56);
+  --v17-panel:rgba(255,255,255,.76);
+  --v17-card:rgba(255,255,255,.62);
+  --v17-card-2:rgba(241,245,249,.74);
+  --v17-input:rgba(255,255,255,.72);
+  --v17-line:rgba(100,116,139,.14);
+  --v17-text:#172033;
+  --v17-muted:#667085;
+}
+html[data-essencia-theme="light"] body{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(99,102,241,.08),transparent 28%),
+    radial-gradient(circle at 88% 10%,rgba(56,189,248,.06),transparent 26%),
+    linear-gradient(180deg,#f8fafc 0%,#eef2f7 100%)!important;
+}
+html[data-essencia-theme="light"] .server-rail,
+html[data-essencia-theme="light"] .sidebar,
+html[data-essencia-theme="light"] .topbar,
+html[data-essencia-theme="light"] .members-panel,
+html[data-essencia-theme="light"] .sidebar-bottom,
+html[data-essencia-theme="light"] .me-bar,
+html[data-essencia-theme="light"] .composer{
+  background:rgba(255,255,255,.58)!important;
+  border-color:rgba(100,116,139,.14)!important;
+  box-shadow:none!important;
+}
+html[data-essencia-theme="light"] .v17-settings,
+html[data-essencia-theme="light"] .v21-admin,
+html[data-essencia-theme="light"] .v19-admin-modal,
+html[data-essencia-theme="light"] .v23-channel-modal,
+html[data-essencia-theme="light"] .v20-search-panel,
+html[data-essencia-theme="light"] .v17-profile-popover,
+html[data-essencia-theme="light"] .v21-self-pop,
+html[data-essencia-theme="light"] .emoji-popover,
+html[data-essencia-theme="light"] .stream-volume-context{
+  background:rgba(255,255,255,.78)!important;
+  color:#172033!important;
+  border-color:rgba(100,116,139,.14)!important;
+  box-shadow:0 18px 48px rgba(30,41,59,.10)!important;
+  backdrop-filter:blur(22px)!important;
+  -webkit-backdrop-filter:blur(22px)!important;
+}
+html[data-essencia-theme="light"] .v17-settings-nav,
+html[data-essencia-theme="light"] .v21-admin-nav,
+html[data-essencia-theme="light"] .v19-admin-nav{
+  background:rgba(241,245,249,.62)!important;
+}
+html[data-essencia-theme="light"] input,
+html[data-essencia-theme="light"] textarea,
+html[data-essencia-theme="light"] .members-filter-wrap input,
+html[data-essencia-theme="light"] .v20-search-box,
+html[data-essencia-theme="light"] .v20-search-panel-input{
+  background:rgba(255,255,255,.68)!important;
+  color:#172033!important;
+  border-color:rgba(100,116,139,.16)!important;
+}
+html[data-essencia-theme="light"] .nav-item:hover,
+html[data-essencia-theme="light"] .dm-item:hover,
+html[data-essencia-theme="light"] .member-row:hover,
+html[data-essencia-theme="light"] .person-row:hover,
+html[data-essencia-theme="light"] #textChannels .v23-channel-row:hover,
+html[data-essencia-theme="light"] #voiceChannels .v30-channel-main:hover{
+  background:rgba(99,102,241,.06)!important;
+  border-color:rgba(99,102,241,.14)!important;
+}
+html[data-essencia-theme="light"] .rail-logo.v30-home-e .v30-home-e-letter{
+  color:#fff;
+}
+
+@media(max-width:760px){
+  #textChannels .v23-channel-gear,
+  #voiceChannels .v30-channel-main>.v23-channel-gear{opacity:.72!important;transform:none!important}
+  #textChannels .v23-channel-row,
+  #voiceChannels .v30-channel-main{width:calc(100% - 16px);margin:3px 8px!important}
+}
