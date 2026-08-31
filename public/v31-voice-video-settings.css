@@ -1,0 +1,34 @@
+/* Essência V31 — Voz e vídeo estilo painel Discord, isolado da lógica principal. */
+.v31vv-page{max-width:860px;padding:2px 4px 28px}
+.v31vv-page h2{margin:0 0 6px;font-size:24px}
+.v31vv-page>p{margin:0 0 24px;color:var(--v17-muted,#8d97ab);font-size:13px}
+.v31vv-loading{padding:18px;border:1px solid rgba(148,163,184,.15);border-radius:12px;background:rgba(255,255,255,.025);color:var(--v17-muted,#8d97ab)}
+.v31vv-section{padding:0 0 24px;margin-bottom:24px;border-bottom:1px solid rgba(148,163,184,.12)}
+.v31vv-section h3{font-size:16px;margin:0 0 16px}
+.v31vv-device-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v31vv-volume-grid{margin-top:18px}
+.v31vv-field{display:block;min-width:0}
+.v31vv-field>span{display:block;margin-bottom:8px;font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--v17-muted,#8d97ab)}
+.v31vv-field select{width:100%;height:44px;border:1px solid rgba(148,163,184,.16);border-radius:7px;padding:0 12px;background:#0e1421;color:#e8edf7;outline:none}
+.v31vv-field select:focus{border-color:#745cff;box-shadow:0 0 0 2px rgba(116,92,255,.16)}
+.v31vv-range-row{display:grid;grid-template-columns:minmax(0,1fr) 52px;align-items:center;gap:10px}
+.v31vv-range-row input[type=range]{width:100%;accent-color:#6d5dfc}
+.v31vv-range-row b{font-size:11px;color:#dce3f0;text-align:right}
+.v31vv-test-card{margin-top:20px;border:1px solid rgba(148,163,184,.14);background:rgba(255,255,255,.025);border-radius:12px;padding:14px}
+.v31vv-test-card>div:first-child{display:flex;flex-direction:column;gap:5px}
+.v31vv-test-card small{color:var(--v17-muted,#8d97ab)}
+.v31vv-test-card button,.v31vv-camera-card button{margin-top:12px;min-height:36px;padding:0 13px;border:0;border-radius:7px;background:#5865f2;color:#fff;font-weight:700;cursor:pointer}
+.v31vv-meter{height:34px;margin-top:13px;display:flex;align-items:center;gap:3px;overflow:hidden}
+.v31vv-meter span{display:block;flex:1;height:12px;min-width:3px;border-radius:2px;background:#303745;transition:height .05s,background .05s}
+.v31vv-meter span.active{height:27px;background:#57f287}
+.v31vv-camera-field{max-width:560px}
+.v31vv-camera-card{position:relative;width:min(100%,560px);aspect-ratio:16/9;margin-top:14px;border-radius:12px;overflow:hidden;background:#090d15;border:1px solid rgba(148,163,184,.14);display:grid;place-items:center}
+.v31vv-camera-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.v31vv-camera-empty{color:#788399;font-size:13px;z-index:1}
+.v31vv-camera-card button{position:absolute;left:12px;bottom:12px;z-index:4;margin:0;background:rgba(18,24,37,.86);backdrop-filter:blur(8px)}
+.v31vv-actions{display:flex;gap:10px;flex-wrap:wrap}
+.v31vv-actions button{min-height:40px;border-radius:8px;padding:0 15px}
+html[data-essencia-theme="light"] .v31vv-field select{background:rgba(250,251,253,.82);color:#182235;border-color:rgba(73,87,111,.17)}
+html[data-essencia-theme="light"] .v31vv-test-card,html[data-essencia-theme="light"] .v31vv-camera-card{background:rgba(250,251,253,.56);border-color:rgba(73,87,111,.14)}
+html[data-essencia-theme="light"] .v31vv-range-row b{color:#28354b}
+@media(max-width:760px){.v31vv-device-grid{grid-template-columns:1fr}.v31vv-page{padding-bottom:18px}.v31vv-camera-card{width:100%}}
