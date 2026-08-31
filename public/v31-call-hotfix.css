@@ -1,0 +1,144 @@
+/* Essência V31 — hotfix da call/PV e rodapé da sidebar.
+   Mantém controles, call ativa e perfil sempre dentro da viewport. */
+
+html,body{
+  height:100%;
+  min-height:100%;
+}
+
+.app{
+  height:100dvh!important;
+  max-height:100dvh!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+
+.sidebar,
+.content{
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+
+#homeSidebar,
+#serverSidebar{
+  min-height:0!important;
+  flex:1 1 auto!important;
+  overflow-y:auto!important;
+}
+
+.sidebar-bottom{
+  margin-top:auto!important;
+  flex:0 0 auto!important;
+  min-height:0!important;
+  position:relative!important;
+  z-index:20!important;
+}
+
+.sidebar-bottom .active-call-bar{
+  flex:0 0 auto!important;
+}
+
+.sidebar-bottom .me-bar{
+  margin-top:0!important;
+  flex:0 0 68px!important;
+  min-height:68px!important;
+  height:68px!important;
+}
+
+/* A área da call precisa caber entre a topbar e o fim da janela. */
+#voiceView{
+  position:relative!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+
+#voiceView .voice-stage{
+  position:relative!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  padding:20px 20px 94px!important;
+}
+
+#voiceView .video-grid{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:auto!important;
+  align-content:center!important;
+  padding:10px 0!important;
+}
+
+/* Controles ficam presos na parte inferior da call e nunca somem abaixo da tela. */
+#voiceView .voice-controls{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  z-index:30!important;
+  min-height:82px!important;
+  margin:0!important;
+  padding:12px 16px 16px!important;
+  display:flex!important;
+  justify-content:center!important;
+  background:linear-gradient(180deg,rgba(7,9,22,0),rgba(7,9,22,.90) 30%,rgba(7,9,22,.98))!important;
+}
+
+/* PV sem transmissão: não transformar um único avatar num painel gigante. */
+#voiceView.v31-dm-call .video-grid:not(:has(.video-tile.local-sharing)):not(:has(.video-tile.remote-sharing)){
+  grid-template-columns:minmax(0,1fr)!important;
+  place-items:center!important;
+}
+
+#voiceView.v31-dm-call .video-grid:not(:has(.video-tile.local-sharing)):not(:has(.video-tile.remote-sharing)) .video-tile{
+  width:min(100%,1080px)!important;
+  max-width:1080px!important;
+  min-height:190px!important;
+  max-height:calc(100dvh - 245px)!important;
+  aspect-ratio:16/9!important;
+  justify-self:center!important;
+}
+
+/* Durante transmissão, usar o palco disponível sem empurrar os controles. */
+#voiceView .video-grid:has(.video-tile.local-sharing),
+#voiceView .video-grid:has(.video-tile.remote-sharing){
+  align-content:stretch!important;
+  min-height:0!important;
+}
+
+#voiceView .video-grid:has(.video-tile.local-sharing) .video-tile.local-sharing,
+#voiceView .video-grid:has(.video-tile.remote-sharing) .video-tile.remote-sharing{
+  height:100%!important;
+  max-height:calc(100dvh - 220px)!important;
+  min-height:0!important;
+}
+
+@media(max-width:760px){
+  .app{
+    height:100dvh!important;
+    max-height:100dvh!important;
+  }
+
+  #voiceView .voice-stage{
+    padding:14px 12px 84px!important;
+  }
+
+  #voiceView .voice-controls{
+    min-height:74px!important;
+    padding:8px 4px 10px!important;
+  }
+
+  #voiceView.v31-dm-call .video-grid:not(:has(.video-tile.local-sharing)):not(:has(.video-tile.remote-sharing)) .video-tile{
+    width:100%!important;
+    max-width:100%!important;
+    max-height:55dvh!important;
+  }
+
+  .sidebar-bottom .me-bar{
+    flex-basis:62px!important;
+    min-height:62px!important;
+    height:62px!important;
+  }
+}
