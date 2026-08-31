@@ -30,7 +30,7 @@
 }
 
 .v31-call-panel .active-call-top{
-  padding:10px 10px 6px!important;
+  padding:10px!important;
 }
 
 .v31-call-panel .active-call-info{
@@ -62,6 +62,11 @@
 .v31-call-panel #activeCallSubtitle{
   color:#8fb4a7!important;
   font-size:10px!important;
+}
+
+/* A lista de pessoas foi removida da barra verde. */
+.v31-call-panel #activeCallParticipants{
+  display:none!important;
 }
 
 .v31-stream-strip{
@@ -113,7 +118,7 @@
 .v31-call-quick-actions button.muted{color:#ffacb5!important;background:rgba(112,31,43,.72)!important}
 .v31-call-quick-actions button.danger{background:rgba(109,37,50,.80);color:#ffd4d9}
 
-/* Ações nativas antigas ficam discretas: a barra nova já fornece os comandos. */
+/* Na parte superior deixa só o botão para visualizar a call. */
 .v31-call-panel .active-call-actions{
   display:flex!important;
   gap:5px!important;
@@ -121,6 +126,13 @@
 .v31-call-panel .active-call-actions button{
   width:30px!important;
   height:30px!important;
+}
+.v31-call-panel #disconnectCallBtn{
+  display:none!important;
+}
+.v31-call-panel #showActiveCallBtn{
+  display:inline-grid!important;
+  place-items:center!important;
 }
 
 @media(max-width:760px){
