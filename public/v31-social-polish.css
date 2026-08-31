@@ -1,0 +1,213 @@
+/* Essência V31 Social — status, preview do servidor e convites. */
+
+#addFriendTopBtn.v31-remove-isolated-add{display:none!important}
+
+.me-bar.v31-me-status-bar{
+  display:grid!important;
+  grid-template-columns:auto auto minmax(0,1fr) auto auto auto!important;
+  align-items:center!important;
+  gap:6px!important;
+}
+.me-bar.v31-me-status-bar .me-meta{min-width:0!important}
+.me-bar.v31-me-status-bar .me-meta strong{
+  display:block!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.me-bar.v31-me-status-bar .me-meta small.v31-current-status-text{
+  display:block!important;
+  margin-top:1px!important;
+  color:var(--v17-muted,#8994a8)!important;
+  font-size:10px!important;
+  white-space:nowrap!important;
+}
+.v31-hide-old-status{display:none!important}
+
+.v31-quick-status-picker{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  align-items:center;
+  justify-content:center;
+}
+.v31-quick-status-picker button{
+  width:13px;
+  height:13px;
+  min-width:13px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  display:grid;
+  place-items:center;
+  opacity:.48;
+}
+.v31-quick-status-picker button:hover,
+.v31-quick-status-picker button.active{opacity:1}
+.v31-status-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  display:block;
+  box-shadow:0 0 0 2px rgba(255,255,255,.06);
+}
+.v31-status-dot.online{background:#2fd18b}
+.v31-status-dot.dnd{background:#f05261}
+.v31-status-dot.invisible{background:#667085}
+.v31-quick-status-picker button.active .v31-status-dot{
+  box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 0 4px rgba(116,92,255,.12);
+}
+
+.v21-server-preview-icon img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  border-radius:14px!important;
+}
+
+.v31-invite-overlay{
+  position:fixed;
+  inset:0;
+  z-index:390;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:rgba(3,5,13,.72);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+}
+.v31-invite-dialog{
+  position:relative;
+  width:min(460px,calc(100vw - 32px));
+  max-height:min(680px,calc(100vh - 40px));
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  background:#111522;
+  color:#f8fafc;
+  border:1px solid rgba(148,163,184,.18);
+  border-radius:16px;
+  box-shadow:0 26px 80px rgba(0,0,0,.46);
+  padding:20px;
+}
+.v31-invite-dialog h2{margin:0 38px 5px 0;font-size:20px}
+.v31-invite-dialog>p{margin:0 0 15px;color:#8f99ac;font-size:12px}
+.v31-invite-close{
+  position:absolute;
+  right:13px;
+  top:12px;
+  width:32px;
+  height:32px;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#9aa4b6;
+  font-size:24px;
+}
+.v31-invite-close:hover{background:rgba(255,255,255,.06);color:#fff}
+.v31-invite-search-wrap{padding-bottom:12px;border-bottom:1px solid rgba(148,163,184,.12)}
+#v31InviteSearch{
+  width:100%;
+  min-height:42px;
+  border:1px solid rgba(148,163,184,.17);
+  border-radius:10px;
+  background:#0c1020;
+  color:#fff;
+  padding:0 12px;
+  outline:none;
+}
+#v31InviteSearch:focus{border-color:rgba(116,92,255,.72);box-shadow:0 0 0 3px rgba(116,92,255,.12)}
+.v31-invite-friends{
+  overflow:auto;
+  min-height:110px;
+  max-height:380px;
+  padding:8px 2px 6px 0;
+}
+.v31-invite-friend{
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  padding:8px 5px;
+  border-radius:10px;
+}
+.v31-invite-friend:hover{background:rgba(255,255,255,.035)}
+.v31-invite-friend img{width:38px;height:38px;border-radius:50%;object-fit:cover}
+.v31-invite-friend-meta{min-width:0}
+.v31-invite-friend-meta strong,
+.v31-invite-friend-meta small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v31-invite-friend-meta small{color:#818ba0;font-size:10px;margin-top:2px}
+.v31-invite-friend button{
+  min-width:78px;
+  height:34px;
+  border-radius:9px;
+  border:1px solid rgba(47,209,139,.52);
+  background:transparent;
+  color:#8df0c3;
+  font-size:11px;
+  font-weight:800;
+}
+.v31-invite-friend button:hover{background:rgba(47,209,139,.10)}
+.v31-invite-friend button.sent{border-color:rgba(148,163,184,.18);color:#7f8a9d;background:rgba(255,255,255,.04)}
+.v31-invite-empty{padding:28px 12px;text-align:center;color:#818ba0;font-size:12px}
+.v31-invite-note{border-top:1px solid rgba(148,163,184,.12);padding-top:11px;color:#748094;font-size:10px}
+
+.v21-invite-card.v31-invite-card-polished{
+  overflow:hidden!important;
+  max-width:430px!important;
+  margin-top:9px!important;
+  border:1px solid rgba(148,163,184,.18)!important;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,rgba(32,37,47,.98),rgba(25,30,38,.98))!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.20)!important;
+}
+.v31-invite-card-polished .v21-invite-card-banner{height:70px!important;background-size:cover!important;background-position:center!important}
+.v31-invite-card-polished .v21-invite-card-body{padding:14px!important}
+.v31-invite-card-polished .v21-invite-card-head{align-items:center!important}
+.v31-invite-card-polished .v21-invite-card-icon{
+  width:54px!important;
+  height:54px!important;
+  min-width:54px!important;
+  border-radius:14px!important;
+  object-fit:cover!important;
+  background:#10141d!important;
+}
+.v31-invite-card-polished .v21-invite-card-head strong{font-size:11px!important;color:#9ba5b7!important;text-transform:uppercase!important;letter-spacing:.06em!important}
+.v31-invite-card-polished .v21-invite-card-head div div{font-size:17px!important;font-weight:800!important;color:#f8fafc!important;margin-top:2px!important}
+.v31-invite-card-polished .v21-invite-card-actions{display:flex!important;gap:8px!important;margin-top:13px!important}
+.v31-invite-card-polished .v21-invite-accept{
+  flex:1!important;
+  min-height:38px!important;
+  border:0!important;
+  border-radius:9px!important;
+  background:#1aa55b!important;
+  color:#fff!important;
+  font-weight:800!important;
+}
+.v31-invite-card-polished .v21-invite-reject{
+  min-height:38px!important;
+  border:1px solid rgba(148,163,184,.18)!important;
+  border-radius:9px!important;
+  background:rgba(255,255,255,.04)!important;
+  color:#c3cad5!important;
+}
+.v31-invite-card-polished .v21-invite-status{margin-top:10px!important;color:#8d99aa!important;font-size:11px!important}
+
+html[data-essencia-theme="light"] .v31-invite-dialog{
+  background:rgba(249,250,252,.92);
+  color:#182235;
+  border-color:rgba(73,87,111,.17);
+}
+html[data-essencia-theme="light"] #v31InviteSearch{background:rgba(255,255,255,.72);color:#182235;border-color:rgba(73,87,111,.16)}
+html[data-essencia-theme="light"] .v31-invite-friend:hover{background:rgba(98,82,216,.055)}
+html[data-essencia-theme="light"] .v31-invite-friend-meta small,
+html[data-essencia-theme="light"] .v31-invite-note,
+html[data-essencia-theme="light"] .v31-invite-empty{color:#657388}
+
+@media(max-width:760px){
+  .me-bar.v31-me-status-bar{grid-template-columns:auto auto minmax(0,1fr) auto auto auto!important;gap:4px!important}
+  .v31-quick-status-picker{gap:2px}
+  .v31-invite-overlay{padding:10px}
+  .v31-invite-dialog{width:100%;max-height:calc(100vh - 20px);padding:16px}
+}
