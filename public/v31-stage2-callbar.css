@@ -1,0 +1,131 @@
+/* Essência V31 — Etapa 2: call panel + webcam + controles. */
+
+#qualityBtn.v31-stage2-hidden,
+#qualityBtn{display:none!important}
+
+#voiceView .voice-controls{
+  gap:12px!important;
+}
+
+#voiceView .voice-controls .round-control{
+  min-width:72px!important;
+}
+
+#cameraBtn.active,
+#v31QuickCamera.active,
+#v31QuickScreen.active{
+  background:linear-gradient(135deg,#5f50e8,#774cff)!important;
+  color:#fff!important;
+}
+
+#cameraBtn.device-unavailable,
+#v31QuickCamera.device-unavailable{
+  opacity:.45!important;
+  cursor:not-allowed!important;
+}
+
+.v31-call-panel{
+  background:linear-gradient(180deg,rgba(8,30,23,.96),rgba(6,22,18,.98))!important;
+  border-top:1px solid rgba(62,214,144,.16)!important;
+}
+
+.v31-call-panel .active-call-top{
+  padding:10px 10px 6px!important;
+}
+
+.v31-call-panel .active-call-info{
+  align-items:center!important;
+}
+
+.v31-call-panel .active-call-info>div{
+  display:flex!important;
+  min-width:0!important;
+  flex-direction:column!important;
+}
+
+.v31-call-panel .v31-call-status{
+  color:#4fe0a4!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  line-height:1.15!important;
+  margin-bottom:2px!important;
+}
+
+.v31-call-panel #activeCallTitle{
+  color:#f6fbf9!important;
+  font-size:12px!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+
+.v31-call-panel #activeCallSubtitle{
+  color:#8fb4a7!important;
+  font-size:10px!important;
+}
+
+.v31-stream-strip{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:8px 10px;
+  background:rgba(21,65,52,.92);
+  border-bottom:1px solid rgba(90,225,168,.14);
+}
+.v31-stream-strip.hidden{display:none!important}
+.v31-stream-strip>div{display:flex;align-items:center;gap:7px;min-width:0}
+.v31-stream-strip strong{font-size:11px;color:#e9fff5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v31-stream-dot{width:8px;height:8px;border-radius:50%;background:#4fe0a4;box-shadow:0 0 0 3px rgba(79,224,164,.12)}
+#v31StopStreamBtn{
+  border:1px solid rgba(244,102,119,.35);
+  background:rgba(107,31,42,.72);
+  color:#ffd9df;
+  border-radius:7px;
+  padding:5px 8px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.v31-call-quick-actions{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  padding:7px 8px 9px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.v31-call-quick-actions button{
+  min-width:0;
+  min-height:42px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.055);
+  color:#dde9e4;
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:1px;
+}
+.v31-call-quick-actions button span{font-size:15px;line-height:1}
+.v31-call-quick-actions button small{font-size:8px;color:inherit!important;opacity:.82!important}
+.v31-call-quick-actions button:hover{background:rgba(255,255,255,.09)}
+.v31-call-quick-actions button.muted{color:#ffacb5!important;background:rgba(112,31,43,.72)!important}
+.v31-call-quick-actions button.danger{background:rgba(109,37,50,.80);color:#ffd4d9}
+
+/* Ações nativas antigas ficam discretas: a barra nova já fornece os comandos. */
+.v31-call-panel .active-call-actions{
+  display:flex!important;
+  gap:5px!important;
+}
+.v31-call-panel .active-call-actions button{
+  width:30px!important;
+  height:30px!important;
+}
+
+@media(max-width:760px){
+  .v31-call-quick-actions{gap:4px;padding:6px}
+  .v31-call-quick-actions button{min-height:40px}
+  #voiceView .voice-controls{gap:7px!important}
+  #voiceView .voice-controls .round-control{min-width:62px!important}
+}
