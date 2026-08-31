@@ -8,7 +8,7 @@ module.exports = function applyV26SourcePatch(source) {
     return true;
   };
 
-  const ASSET_VERSION = '31safe5';
+  const ASSET_VERSION = '31safe6';
 
   // Tolera oscilações curtas de rede antes de considerar o Socket.IO perdido.
   replace(
