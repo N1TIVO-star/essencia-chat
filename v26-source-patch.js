@@ -8,7 +8,7 @@ module.exports = function applyV26SourcePatch(source) {
     return true;
   };
 
-  const ASSET_VERSION = '31safe1';
+  const ASSET_VERSION = '31safe2';
 
   // Tolera oscilações curtas de rede antes de considerar o Socket.IO perdido.
   replace(
@@ -34,11 +34,11 @@ module.exports = function applyV26SourcePatch(source) {
 
   source = source.replace(
     '"/v25-final-ui.css"]',
-    `"/v25-final-ui.css?v=${ASSET_VERSION}", "/v27-media.css?v=${ASSET_VERSION}", "/v30-safe.css?v=${ASSET_VERSION}", "/v30-safe-pwa.css?v=${ASSET_VERSION}", "/v31-ui-controls.css?v=${ASSET_VERSION}"]`
+    `"/v25-final-ui.css?v=${ASSET_VERSION}", "/v27-media.css?v=${ASSET_VERSION}", "/v30-safe.css?v=${ASSET_VERSION}", "/v30-safe-pwa.css?v=${ASSET_VERSION}", "/v31-ui-controls.css?v=${ASSET_VERSION}", "/v31-call-hotfix.css?v=${ASSET_VERSION}"]`
   );
   source = source.replace(
     '"/v24-admin-fix.css"]',
-    `"/v24-admin-fix.css?v=${ASSET_VERSION}", "/v27-media.css?v=${ASSET_VERSION}", "/v30-safe.css?v=${ASSET_VERSION}", "/v30-safe-pwa.css?v=${ASSET_VERSION}", "/v31-ui-controls.css?v=${ASSET_VERSION}"]`
+    `"/v24-admin-fix.css?v=${ASSET_VERSION}", "/v27-media.css?v=${ASSET_VERSION}", "/v30-safe.css?v=${ASSET_VERSION}", "/v30-safe-pwa.css?v=${ASSET_VERSION}", "/v31-ui-controls.css?v=${ASSET_VERSION}", "/v31-call-hotfix.css?v=${ASSET_VERSION}"]`
   );
 
   // Favicon + manifesto + quebra de cache dos arquivos-base do HTML.
