@@ -126,11 +126,6 @@
   padding:0 10px 2px 22px!important;
 }
 
-/* Seletor de GIF: mantém somente GIFs, sem aba Emoji. */
-#v17GifPicker [data-v17-picker-tab="emoji"]{
-  display:none!important;
-}
-
 /* Light 3.0: branco/cinza, translúcido, sem blocos pretos */
 html[data-essencia-theme="light"]{
   --v25-bg:#eef2f7;
